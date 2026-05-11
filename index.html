@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiador de Emojis y Fuentes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>EmojiExpress</h1>
+        <p>Haz clic para copiar cualquier emoji al instante</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar emoji (ej: fuego, cara, corazon)...">
+        </div>
+    </header>
+
+    <nav class="categories">
+        <button onclick="filterCategory('todos')">Todos</button>
+        <button onclick="filterCategory('caras')">Caras</button>
+        <button onclick="filterCategory('ventas')">Ventas/Negocio</button>
+        <button onclick="filterCategory('fuego')">Populares</button>
+    </nav>
+
+    <main id="emojiGrid" class="emoji-grid">
+        </main>
+
+    <div id="toast" class="toast hidden">¡Copiado con éxito!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
