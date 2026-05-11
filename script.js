@@ -681,16 +681,22 @@ function renderEmojis(filter = "", category = "todos") {
         const itemTags = normalize(item.tags.toLowerCase());
         const matchesSearch = itemTags.includes(searchFilter);
         
-        // Si la categoría es "todos" en el render inicial, 
-        // pero queremos que por defecto solo salgan los TOP:
-        const matchesCat = (category === "todos") ? item.cat === "fuego" : item.cat === category;
-        
-        return matchesSearch && matchesCat;
+        // LÓGICA UNIVERSAL:
+        // Si el usuario está escribiendo (filter no está vacío), buscamos en TODO.
+        // Si el buscador está vacío, respetamos las pestañas/categorías.
+        if (filter !== "") {
+            return matchesSearch; 
+        } else {
+            const matchesCat = (category === "todos") ? item.cat === "fuego" : item.cat === category;
+            return matchesCat;
+        }
     });
 
-    // Solo mostramos error si el usuario REALMENTE buscó algo y no se halló
     if (filtered.length === 0 && filter !== "") {
-        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5;">No se encontró nada para "${filter}"...</div>`;
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5;">
+            No se encontró nada para "${filter}"... <br>
+            <small>Intenta con palabras simples como: camion, herramienta, bolivia</small>
+        </div>`;
         return;
     }
 
