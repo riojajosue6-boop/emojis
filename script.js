@@ -442,10 +442,23 @@ const btnClear = document.getElementById('btnClear');
 const toast = document.getElementById('toast');
 
 // 3. FUNCIONES GLOBALES (Blindadas para el HTML)
+/**
+ * 1. LÓGICA DE FILTRADO MEJORADA
+ */
 window.filterCategory = function(cat) {
+    // Cerramos la biblioteca si estuviera abierta
     const fullLibrary = document.getElementById('fullLibrary');
-    if (fullLibrary) fullLibrary.classList.add('hidden'); // Cierra la biblioteca al filtrar
-    renderEmojis(searchInput.value, cat);
+    if (fullLibrary) fullLibrary.classList.add('hidden');
+
+    if (cat === 'todos') {
+        // En "Sugeridos" solo mostramos los que tienen la categoría 'fuego'
+        renderEmojis("", "fuego"); 
+    } else if (cat === 'objetos') {
+        // "Herramientas" ahora apunta a la categoría 'viajes' y 'ventas' técnicas
+        renderEmojis("", "viajes");
+    } else {
+        renderEmojis("", cat);
+    }
 };
 
 window.toggleLibrary = function() {
@@ -460,6 +473,9 @@ window.renderByGroup = function(group) {
 };
 
 // 4. BUSCADOR INTELIGENTE
+/**
+ * 2. CORRECCIÓN DE "SIN RESULTADOS" AL CARGAR
+ */
 function renderEmojis(filter = "", category = "todos") {
     if (!grid) return;
     grid.innerHTML = "";
@@ -470,18 +486,17 @@ function renderEmojis(filter = "", category = "todos") {
     const filtered = emojiData.filter(item => {
         const itemTags = normalize(item.tags.toLowerCase());
         const matchesSearch = itemTags.includes(searchFilter);
-        const matchesCat = category === "todos" || item.cat === category;
+        
+        // Si la categoría es "todos" en el render inicial, 
+        // pero queremos que por defecto solo salgan los TOP:
+        const matchesCat = (category === "todos") ? item.cat === "fuego" : item.cat === category;
+        
         return matchesSearch && matchesCat;
     });
 
-    if (filtered.length === 0) {
-        const noResults = document.createElement('div');
-        noResults.className = 'no-results';
-        noResults.style.gridColumn = "1/-1";
-        noResults.style.padding = "20px";
-        noResults.style.opacity = "0.7";
-        noResults.innerHTML = `<p>No se encontraron emojis para "<strong>${filter}</strong>"</p><span>Intenta con: fuego, amor, ventas...</span>`;
-        grid.appendChild(noResults);
+    // Solo mostramos error si el usuario REALMENTE buscó algo y no se halló
+    if (filtered.length === 0 && filter !== "") {
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5;">No se encontró nada para "${filter}"...</div>`;
         return;
     }
 
@@ -494,6 +509,10 @@ function renderEmojis(filter = "", category = "todos") {
     });
 }
 
+// Asegurarnos que al abrir la web solo salgan los sugeridos (fuego)
+document.addEventListener('DOMContentLoaded', () => {
+    renderEmojis("", "fuego"); 
+});
 // 5. LÓGICA DEL COMPOSER
 function addEmojiToComposer(char) {
     if (!composer) return;
