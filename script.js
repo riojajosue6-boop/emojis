@@ -594,7 +594,7 @@ const emojiData = [
     { char: "🔺", tags: "triangulo arriba", cat: "simbolos" },
     { char: "🔻", tags: "triangulo abajo", cat: "simbolos" },
     { char: "💠", tags: "diamante punto", cat: "simbolos" },
-    { char: "🔘", tags: "boton radio", cat: "simbolos" }
+    { char: "🔘", tags: "boton radio", cat: "simbolos" },
 
     // --- CATEGORÍA: HERRAMIENTAS Y TECNOLOGÍA (cat: herramientas) ---
     { char: "💻", tags: "laptop ordenador computadora pc mac", cat: "herramientas" },
