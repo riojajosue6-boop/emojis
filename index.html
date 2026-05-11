@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copiador de Emojis y Fuentes</title>
+    <title>EmojiExpress | Herramienta de Copiado Profesional</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <h1>EmojiExpress</h1>
-        <p>Haz clic para copiar cualquier emoji al instante</p>
+        <p>Selecciona los emojis para armar tu mensaje y cópialos de una vez</p>
+        
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar emoji (ej: fuego, cara, corazon)...">
+            <input type="text" id="searchInput" placeholder="Buscar emoji (ej: fuego, ventas, flecha)...">
         </div>
     </header>
+
+    <section class="workstation">
+        <div class="composer-wrapper">
+            <input type="text" id="emojiComposer" placeholder="Tus emojis aparecerán aquí..." readonly>
+            <div class="composer-actions">
+                <button id="btnCopyAll" class="btn-primary">Copiar Combo</button>
+                <button id="btnClear" class="btn-secondary">Limpiar</button>
+            </div>
+        </div>
+    </section>
 
     <nav class="categories">
         <button onclick="filterCategory('todos')">Todos</button>
@@ -26,7 +37,7 @@
     <main id="emojiGrid" class="emoji-grid">
         </main>
 
-    <div id="toast" class="toast hidden">¡Copiado con éxito!</div>
+    <div id="toast" class="toast hidden">Copiado al portapapeles</div>
 
     <script src="script.js"></script>
 </body>
