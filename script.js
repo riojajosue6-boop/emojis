@@ -454,7 +454,6 @@ const toast = document.getElementById('toast');
 function renderEmojis(filter = "", category = "todos") {
     grid.innerHTML = "";
     
-    // Función interna para quitar tildes y normalizar texto
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const searchFilter = normalize(filter.toLowerCase());
 
@@ -464,6 +463,16 @@ function renderEmojis(filter = "", category = "todos") {
         const matchesCat = category === "todos" || item.cat === category;
         return matchesSearch && matchesCat;
     });
+
+    // --- NUEVO: FEEDBACK DE "SIN RESULTADOS" ---
+    if (filtered.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = `<p>No se encontraron emojis para "<strong>${filter}</strong>"</p><span>Intenta con: fuego, amor, ventas...</span>`;
+        grid.appendChild(noResults);
+        return;
+    }
+    // -------------------------------------------
 
     filtered.forEach(emoji => {
         const div = document.createElement('div');
