@@ -31,13 +31,22 @@
 </section>
     </section>
 
-   <nav class="categories">
-    <button onclick="filterCategory('todos')">Todos</button>
+<nav class="categories">
+    <button onclick="filterCategory('todos')" class="active">Sugeridos</button>
+    <button onclick="filterCategory('ventas')">Ventas</button>
     <button onclick="filterCategory('caras')">Emociones</button>
-    <button onclick="filterCategory('ventas')">Marketing & Ventas</button>
-    <button onclick="filterCategory('fuego')">Tendencias</button>
     <button onclick="filterCategory('objetos')">Herramientas</button>
+    <button onclick="toggleLibrary()" id="btnLibrary" style="background: var(--primary); color: white;">📂 Ver Todos</button>
 </nav>
+    <div id="fullLibrary" class="hidden">
+    <div class="library-groups">
+        <button onclick="renderByGroup('animales')">🐾 Animales</button>
+        <button onclick="renderByGroup('comida')">🍔 Comida</button>
+        <button onclick="renderByGroup('viajes')">✈️ Viajes</button>
+        <button onclick="renderByGroup('banderas')">🏁 Banderas</button>
+        <button onclick="renderByGroup('simbolos')">🔣 Símbolos</button>
+    </div>
+</div>
 
     <main id="emojiGrid" class="emoji-grid">
         </main>
