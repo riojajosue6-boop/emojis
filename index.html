@@ -16,15 +16,19 @@
             <input type="text" id="searchInput" placeholder="Buscar emoji (ej: fuego, ventas, flecha)...">
         </div>
     </header>
-
-    <section class="workstation">
-        <div class="composer-wrapper">
+    
+        <section class="workstation">
+    <div class="composer-wrapper">
+        <div class="input-group">
             <input type="text" id="emojiComposer" placeholder="Tus emojis aparecerán aquí..." readonly>
-            <div class="composer-actions">
-                <button id="btnCopyAll" class="btn-primary">Copiar Combo</button>
-                <button id="btnClear" class="btn-secondary">Limpiar</button>
-            </div>
+            <span id="charCounter" class="char-counter">0</span>
         </div>
+        <div class="composer-actions">
+            <button id="btnCopyAll" class="btn-primary">Copiar Combo</button>
+            <button id="btnClear" class="btn-secondary">Limpiar</button>
+        </div>
+    </div>
+</section>
     </section>
 
    <nav class="categories">
