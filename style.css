@@ -197,3 +197,40 @@ header p {
     border-radius: 4px;
     pointer-events: none; /* Para que no interfiera con clics */
 }
+.font-section {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 0 20px;
+}
+
+.font-hint {
+    font-size: 0.8rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.font-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.font-item {
+    background: var(--card-bg);
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--light);
+}
+
+.font-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    background: #2d3135;
+}
