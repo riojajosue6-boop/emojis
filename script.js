@@ -763,3 +763,60 @@ searchInput.addEventListener('input', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     renderEmojis();
 });
+// 1. Mapas de fuentes Unicode
+const fonts = {
+    negrita: {
+        a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
+        A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"
+    },
+    cursiva: {
+        a: "𝒶", b: "𝒷", c: "𝒸", d: "𝒹", e: "𝑒", f: "𝒻", g: "𝑔", h: "𝒽", i: "𝒾", j: "𝒿", k: "𝓀", l: "𝓁", m: "𝓂", n: "𝓃", o: "𝑜", p: "𝓅", q: "𝓆", r: "𝓇", s: "𝓈", t: "𝓉", u: "𝓊", v: "𝓋", w: "𝓌", x: "𝓍", y: "𝓎", z: "𝓏",
+        A: "𝒜", B: "𝐵", C: "𝒞", D: "𝒟", E: "𝐸", F: "𝐹", G: "𝒢", H: "𝐻", I: "𝐼", J: "𝒥", K: "𝒦", L: "𝐿", M: "𝑀", N: "𝒩", O: "𝒪", P: "𝒫", Q: "𝒬", R: "𝑅", S: "𝒮", T: "𝒯", U: "𝒰", V: "𝒱", W: "𝒲", X: "𝒳", Y: "𝒴", Z: "𝒵"
+    },
+    monocromo: {
+        a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "𝚚", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣",
+        A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", K: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉"
+    }
+};
+
+// 2. Función para transformar y renderizar
+function updateFontResults() {
+    const fontResults = document.getElementById('fontResults');
+    const text = composer.value;
+    fontResults.innerHTML = "";
+
+    if ([...text].length === 0) return;
+
+    Object.keys(fonts).forEach(style => {
+        let converted = "";
+        for (let char of text) {
+            converted += fonts[style][char] || char;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'font-item';
+        div.textContent = converted;
+        div.title = "Haz clic para copiar";
+        div.onclick = () => {
+            navigator.clipboard.writeText(converted).then(() => {
+                showToast(`¡Texto en ${style} copiado!`);
+            });
+        };
+        fontResults.appendChild(div);
+    });
+}
+
+// 3. Vincular con los eventos existentes
+// Agregamos updateFontResults() al listener que ya tienes:
+composer.addEventListener('input', () => {
+    updateCounter();
+    updateFontResults();
+});
+
+// Y también al botón limpiar
+const originalClear = btnClear.onclick;
+btnClear.onclick = () => {
+    composer.value = "";
+    updateCounter();
+    updateFontResults();
+};
