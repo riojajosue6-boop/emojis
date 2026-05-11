@@ -451,10 +451,13 @@ window.filterCategory = function(cat) {
     if (fullLibrary) fullLibrary.classList.add('hidden');
 
     if (cat === 'todos') {
-        // En "Sugeridos" solo mostramos los que tienen la categoría 'fuego'
+        // "Sugeridos" ahora solo muestra los TOP (fuego)
         renderEmojis("", "fuego"); 
-    } else if (cat === 'objetos') {
-        // "Herramientas" ahora apunta a la categoría 'viajes' y 'ventas' técnicas
+    } else if (cat === 'simbolos') {
+        // Si presionan símbolos, mostramos banderas y cualquier cosa técnica
+        renderEmojis("", "banderas");
+    } else if (cat === 'herramientas') {
+        // Si presionan herramientas, mostramos la categoría viajes/objetos
         renderEmojis("", "viajes");
     } else {
         renderEmojis("", cat);
