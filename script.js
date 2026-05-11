@@ -714,18 +714,40 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEmojis("", "fuego"); 
 });
 // 5. LÓGICA DEL COMPOSER
+/**
+ * Inserta el emoji exactamente donde está el cursor
+ */
 function addEmojiToComposer(char) {
     if (!composer) return;
-    composer.value += char;
+
+    // 1. Obtener la posición del cursor (start y end por si hay texto seleccionado)
+    const start = composer.selectionStart;
+    const end = composer.selectionEnd;
+    const text = composer.value;
+
+    // 2. Partir el texto en dos y meter el emoji al medio
+    const before = text.substring(0, start);
+    const after = text.substring(end);
+    
+    composer.value = before + char + after;
+
+    // 3. Reposicionar el cursor justo después del emoji insertado
+    // Usamos [...char].length porque algunos emojis ocupan más de 1 espacio de memoria
+    const newCursorPos = start + [...char].length;
+    composer.selectionStart = composer.selectionEnd = newCursorPos;
+
+    // 4. Mantener el foco en el editor para seguir escribiendo
+    composer.focus();
+
+    // 5. Actualizar contadores y fuentes
     updateCounter();
+    if (typeof updateFontResults === 'function') {
+        updateFontResults();
+    }
+
+    // Feedback visual opcional
     composer.style.borderColor = "var(--primary)";
     setTimeout(() => composer.style.borderColor = "#444", 200);
-}
-
-function updateCounter() {
-    if (!charCounter || !composer) return;
-    const count = [...composer.value].length;
-    charCounter.textContent = count;
 }
 
 composer.addEventListener('input', updateCounter);
