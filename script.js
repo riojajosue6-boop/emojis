@@ -74,7 +74,7 @@ const emojiData = [
     { char: "🌊", tags: "ola mar agua", cat: "fuego" },
     { char: "☀️", tags: "sol verano luz", cat: "fuego" },
     { char: "🎮", tags: "mando consola juego", cat: "fuego" },
-    { char: "🤖", tags: "robot bot ia", cat: "fuego" }
+    { char: "🤖", tags: "robot bot ia", cat: "fuego" },
     // ... (Mantén los de ventas y caras que ya tienes) ...
     // ANIMALES Y NATURALEZA
     { char: "🐶", tags: "perro animal mascota", cat: "animales" },
@@ -439,7 +439,7 @@ const emojiData = [
     { char: "🇲🇽", tags: "bandera mexico mx", cat: "banderas" },
     { char: "🇵🇪", tags: "bandera peru pe", cat: "banderas" },
     { char: "🇺🇸", tags: "bandera usa estados unidos us", cat: "banderas" },
-    { char: "🇻🇪", tags: "bandera venezuela ve", cat: "banderas" }
+    { char: "🇻🇪", tags: "bandera venezuela ve", cat: "banderas" },
 ];
 // 2. ELEMENTOS DEL DOM
 const grid = document.getElementById('emojiGrid');
