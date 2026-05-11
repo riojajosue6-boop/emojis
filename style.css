@@ -234,3 +234,29 @@ header p {
     transform: translateY(-2px);
     background: #2d3135;
 }
+#emojiComposer {
+    width: 100%;
+    min-height: 100px; /* Altura inicial */
+    padding: 12px;
+    padding-right: 45px;
+    background: #000;
+    border: 1px solid #444;
+    color: var(--primary);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    resize: vertical; /* Permite al usuario agrandarlo hacia abajo */
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+/* Ajuste para que el contador no tape el texto en el textarea */
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.char-counter {
+    bottom: 10px; /* Lo movemos a la esquina inferior derecha */
+    top: auto;
+}
+
