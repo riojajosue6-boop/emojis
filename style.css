@@ -172,3 +172,28 @@ header p {
 }
 
 .hidden { display: none; }
+
+/* Contenedor relativo para posicionar el contador dentro del input */
+.input-group {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+#emojiComposer {
+    width: 100%;
+    padding-right: 45px; /* Espacio para que el contador no tape los emojis */
+}
+
+.char-counter {
+    position: absolute;
+    right: 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--primary);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    pointer-events: none; /* Para que no interfiera con clics */
+}
