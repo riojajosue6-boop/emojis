@@ -430,6 +430,119 @@ const emojiData = [
     { char: "🇵🇪", tags: "bandera peru pe", cat: "banderas" },
     { char: "🇺🇸", tags: "bandera usa estados unidos us", cat: "banderas" },
     { char: "🇻🇪", tags: "bandera venezuela ve", cat: "banderas" },
+    // --- CATEGORÍA: SÍMBOLOS Y ESTRUCTURA ---
+    { char: "⚠️", tags: "atencion advertencia cuidado peligro alerta", cat: "simbolos" },
+    { char: "🚫", tags: "prohibido no denegado stop", cat: "simbolos" },
+    { char: "❌", tags: "error equis no aspa", cat: "simbolos" },
+    { char: "⭕", tags: "circulo rojo o ok", cat: "simbolos" },
+    { char: "🛑", tags: "stop pare alto", cat: "simbolos" },
+    { char: "⛔", tags: "entrada prohibida direccion", cat: "simbolos" },
+    { char: "🔇", tags: "silencio mudo", cat: "simbolos" },
+    { char: "🛡️", tags: "escudo proteccion seguridad", cat: "simbolos" },
+    { char: "⚓", tags: "ancla seguridad fijo", cat: "simbolos" },
+    { char: "💯", tags: "cien perfecto nota", cat: "simbolos" },
+    { char: "💢", tags: "enfado simbolo", cat: "simbolos" },
+    { char: "💬", tags: "comentario burbuja texto", cat: "simbolos" },
+    { char: "💭", tags: "pensamiento nube", cat: "simbolos" },
+    { char: "💮", tags: "sello flor", cat: "simbolos" },
+    { char: "🔰", tags: "novato principiante", cat: "simbolos" },
+    { char: "♻️", tags: "reciclaje verde", cat: "simbolos" },
+    { char: "✅", tags: "check verificado ok hecho", cat: "simbolos" },
+    { char: "💹", tags: "grafica mercado subir", cat: "simbolos" },
+    { char: "❇️", tags: "brillo verde", cat: "simbolos" },
+    { char: "✳️", tags: "asterisco verde", cat: "simbolos" },
+    { char: "❎", tags: "check equis", cat: "simbolos" },
+    { char: "🌐", tags: "web internet global", cat: "simbolos" },
+    { char: "💠", tags: "diamante azul flor", cat: "simbolos" },
+    { char: "🌀", tags: "ciclon tornado", cat: "simbolos" },
+    { char: "💤", tags: "sueño dormir", cat: "simbolos" },
+    { char: "🏧", tags: "cajero dinero atm", cat: "simbolos" },
+    { char: "🈂️", tags: "japones servicio", cat: "simbolos" },
+    { char: "🛂", tags: "pasaporte control", cat: "simbolos" },
+    { char: "🛃", tags: "aduana", cat: "simbolos" },
+    { char: "🛄", tags: "equipaje", cat: "simbolos" },
+    { char: "🛅", tags: "consigna", cat: "simbolos" },
+    { char: "♿", tags: "discapacidad silla ruedas", cat: "simbolos" },
+    { char: "🚭", tags: "no fumar tabaco", cat: "simbolos" },
+    { char: "🚾", tags: "baño wc", cat: "simbolos" },
+    { char: "🅿️", tags: "parking estacionamiento", cat: "simbolos" },
+    { char: "🚰", tags: "agua potable", cat: "simbolos" },
+    { char: "🚹", tags: "hombre", cat: "simbolos" },
+    { char: "🚺", tags: "mujer", cat: "simbolos" },
+    { char: "🚻", tags: "baños", cat: "simbolos" },
+    { char: "🚼", tags: "bebe", cat: "simbolos" },
+    { char: "🚸", tags: "niños cruzando", cat: "simbolos" },
+    { char: "🚳", tags: "no bicis", cat: "simbolos" },
+    { char: "🚯", tags: "no basura", cat: "simbolos" },
+    { char: "🚱", tags: "no bebible", cat: "simbolos" },
+    { char: "🚷", tags: "no peatones", cat: "simbolos" },
+    { char: "🔞", tags: "prohibido mas de 18", cat: "simbolos" },
+    { char: "⬅️", tags: "flecha izquierda", cat: "simbolos" },
+    { char: "⬆️", tags: "flecha arriba", cat: "simbolos" },
+    { char: "⬇️", tags: "flecha abajo", cat: "simbolos" },
+    { char: "➡️", tags: "flecha derecha", cat: "simbolos" },
+    { char: "↗️", tags: "flecha diagonal arriba derecha", cat: "simbolos" },
+    { char: "↘️", tags: "flecha diagonal abajo derecha", cat: "simbolos" },
+    { char: "↙️", tags: "flecha diagonal abajo izquierda", cat: "simbolos" },
+    { char: "↖️", tags: "flecha diagonal arriba izquierda", cat: "simbolos" },
+    { char: "↕️", tags: "flechas verticales", cat: "simbolos" },
+    { char: "↔️", tags: "flechas horizontales", cat: "simbolos" },
+    { char: "↩️", tags: "flecha retorno", cat: "simbolos" },
+    { char: "↪️", tags: "flecha giro", cat: "simbolos" },
+    { char: "⤴️", tags: "flecha curva arriba", cat: "simbolos" },
+    { char: "⤵️", tags: "flecha curva abajo", cat: "simbolos" },
+    { char: "🔃", tags: "recargar flechas circulo", cat: "simbolos" },
+    { char: "🔄", tags: "actualizar flechas", cat: "simbolos" },
+    { char: "🔙", tags: "atras back", cat: "simbolos" },
+    { char: "🔚", tags: "fin end", cat: "simbolos" },
+    { char: "🔛", tags: "on encendido", cat: "simbolos" },
+    { char: "🔜", tags: "pronto soon", cat: "simbolos" },
+    { char: "🔝", tags: "top arriba", cat: "simbolos" },
+    { char: "🆔", tags: "id identificacion", cat: "simbolos" },
+    { char: "🆕", tags: "nuevo new", cat: "simbolos" },
+    { char: "🆓", tags: "gratis free", cat: "simbolos" },
+    { char: "ℹ️", tags: "informacion info", cat: "simbolos" },
+    { char: "📶", tags: "señal wifi barras", cat: "simbolos" },
+    { char: "🎦", tags: "cine video", cat: "simbolos" },
+    { char: "🈁", tags: "aqui japones", cat: "simbolos" },
+    { char: "➕", tags: "mas suma positivo", cat: "simbolos" },
+    { char: "➖", tags: "menos resta negativo", cat: "simbolos" },
+    { char: "➗", tags: "division", cat: "simbolos" },
+    { char: "✖️", tags: "multiplicacion equis", cat: "simbolos" },
+    { char: "💲", tags: "dolar dinero precio", cat: "simbolos" },
+    { char: "💱", tags: "cambio divisas", cat: "simbolos" },
+    { char: "❓", tags: "pregunta duda", cat: "simbolos" },
+    { char: "❔", tags: "pregunta blanco", cat: "simbolos" },
+    { char: "❕", tags: "exclamacion blanco", cat: "simbolos" },
+    { char: "❗", tags: "exclamacion alerta", cat: "simbolos" },
+    { char: "〰️", tags: "onda curva", cat: "simbolos" },
+    { char: "➰", tags: "bucle", cat: "simbolos" },
+    { char: "♠️", tags: "picas cartas", cat: "simbolos" },
+    { char: "♣️", tags: "trebol cartas", cat: "simbolos" },
+    { char: "♥️", tags: "corazon cartas", cat: "simbolos" },
+    { char: "♦️", tags: "diamante cartas", cat: "simbolos" },
+    { char: "🔳", tags: "cuadrado blanco borde", cat: "simbolos" },
+    { char: "🔲", tags: "cuadrado negro borde", cat: "simbolos" },
+    { char: "🔴", tags: "circulo rojo", cat: "simbolos" },
+    { char: "🔵", tags: "circulo azul", cat: "simbolos" },
+    { char: "⚫", tags: "circulo negro", cat: "simbolos" },
+    { char: "⚪", tags: "circulo blanco", cat: "simbolos" },
+    { char: "⬛", tags: "cuadrado negro grande", cat: "simbolos" },
+    { char: "⬜", tags: "cuadrado blanco grande", cat: "simbolos" },
+    { char: "◼️", tags: "cuadrado negro medio", cat: "simbolos" },
+    { char: "◻️", tags: "cuadrado blanco medio", cat: "simbolos" },
+    { char: "◾", tags: "cuadrado negro pequeño", cat: "simbolos" },
+    { char: "◽", tags: "cuadrado blanco pequeño", cat: "simbolos" },
+    { char: "▪️", tags: "punto negro", cat: "simbolos" },
+    { char: "▫️", tags: "punto blanco", cat: "simbolos" },
+    { char: "🔶", tags: "rombo naranja grande", cat: "simbolos" },
+    { char: "🔷", tags: "rombo azul grande", cat: "simbolos" },
+    { char: "🔸", tags: "rombo naranja pequeño", cat: "simbolos" },
+    { char: "🔹", tags: "rombo azul pequeño", cat: "simbolos" },
+    { char: "🔺", tags: "triangulo arriba", cat: "simbolos" },
+    { char: "🔻", tags: "triangulo abajo", cat: "simbolos" },
+    { char: "💠", tags: "diamante punto", cat: "simbolos" },
+    { char: "🔘", tags: "boton radio", cat: "simbolos" }
 ];
 
 // 2. ELEMENTOS DEL DOM
@@ -446,22 +559,13 @@ const toast = document.getElementById('toast');
  * 1. LÓGICA DE FILTRADO MEJORADA
  */
 window.filterCategory = function(cat) {
-    // Cerramos la biblioteca si estuviera abierta
     const fullLibrary = document.getElementById('fullLibrary');
     if (fullLibrary) fullLibrary.classList.add('hidden');
-
-    if (cat === 'todos') {
-        // "Sugeridos" ahora solo muestra los TOP (fuego)
-        renderEmojis("", "fuego"); 
-    } else if (cat === 'simbolos') {
-        // Si presionan símbolos, mostramos banderas y cualquier cosa técnica
-        renderEmojis("", "banderas");
-    } else if (cat === 'herramientas') {
-        // Si presionan herramientas, mostramos la categoría viajes/objetos
-        renderEmojis("", "viajes");
-    } else {
-        renderEmojis("", cat);
-    }
+    
+    // Si es 'todos', mostramos los tendencia (fuego)
+    // Si no, buscamos la categoría exacta (ventas, caras, simbolos, etc.)
+    const targetCat = (cat === 'todos') ? 'fuego' : cat;
+    renderEmojis(searchInput.value, targetCat);
 };
 
 window.toggleLibrary = function() {
