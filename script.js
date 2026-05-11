@@ -650,8 +650,7 @@ window.filterCategory = function(cat) {
     const fullLibrary = document.getElementById('fullLibrary');
     if (fullLibrary) fullLibrary.classList.add('hidden');
     
-    // Si es 'todos', mostramos los tendencia (fuego)
-    // Si no, buscamos la categoría exacta (ventas, caras, simbolos, etc.)
+    // Si cat es 'todos', mostramos 'fuego'. Si no, mostramos la categoría exacta.
     const targetCat = (cat === 'todos') ? 'fuego' : cat;
     renderEmojis(searchInput.value, targetCat);
 };
