@@ -76,7 +76,6 @@ const emojiData = [
     { char: "🎮", tags: "mando consola juego", cat: "fuego" },
     { char: "🤖", tags: "robot bot ia", cat: "fuego" }
 ];
-
 // 2. ELEMENTOS DEL DOM
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
@@ -86,12 +85,17 @@ const btnCopyAll = document.getElementById('btnCopyAll');
 const btnClear = document.getElementById('btnClear');
 const toast = document.getElementById('toast');
 
-// 3. LÓGICA DE RENDERIZADO
+// 3. BUSCADOR INTELIGENTE (MEJORA 1: Sin tildes y flexible)
 function renderEmojis(filter = "", category = "todos") {
     grid.innerHTML = "";
     
+    // Función interna para quitar tildes y normalizar texto
+    const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const searchFilter = normalize(filter.toLowerCase());
+
     const filtered = emojiData.filter(item => {
-        const matchesSearch = item.tags.toLowerCase().includes(filter.toLowerCase());
+        const itemTags = normalize(item.tags.toLowerCase());
+        const matchesSearch = itemTags.includes(searchFilter);
         const matchesCat = category === "todos" || item.cat === category;
         return matchesSearch && matchesCat;
     });
@@ -100,29 +104,33 @@ function renderEmojis(filter = "", category = "todos") {
         const div = document.createElement('div');
         div.className = 'emoji-item';
         div.textContent = emoji.char;
-        div.title = emoji.tags;
         div.onclick = () => addEmojiToComposer(emoji.char);
         grid.appendChild(div);
     });
 }
 
-// 4. LÓGICA DE LA WORKSTATION (ACUMULADO Y CONTADOR)
+// 4. LÓGICA DE EDICIÓN INDIVIDUAL (MEJORA 2)
+// Escuchamos cuando el usuario borra o escribe manualmente en la barra
+composer.addEventListener('input', () => {
+    updateCounter();
+});
+
 function addEmojiToComposer(char) {
     composer.value += char;
     updateCounter();
     
-    // Feedback visual en la barra
+    // Feedback visual
     composer.style.borderColor = "var(--primary)";
     setTimeout(() => composer.style.borderColor = "#444", 200);
 }
 
 function updateCounter() {
-    // El operador spread [...] cuenta correctamente emojis complejos (Surrogates)
+    // Contamos visualmente (soporta emojis complejos como 1 solo caracter)
     const count = [...composer.value].length;
     charCounter.textContent = count;
 }
 
-// 5. ACCIONES (COPIAR Y LIMPIAR)
+// 5. ACCIONES
 btnCopyAll.onclick = () => {
     if (composer.value.length > 0) {
         navigator.clipboard.writeText(composer.value).then(() => {
@@ -138,7 +146,7 @@ btnClear.onclick = () => {
     updateCounter();
 };
 
-// 6. UTILIDADES (FILTROS Y NOTIFICACIONES)
+// 6. UTILIDADES
 function filterCategory(cat) {
     renderEmojis(searchInput.value, cat);
 }
@@ -151,7 +159,7 @@ function showToast(message) {
     }, 2000);
 }
 
-// 7. LISTENERS E INICIO
+// Listeners
 searchInput.addEventListener('input', (e) => {
     renderEmojis(e.target.value);
 });
