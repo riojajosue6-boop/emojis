@@ -75,7 +75,7 @@ const emojiData = [
     { char: "☀️", tags: "sol verano luz", cat: "fuego" },
     { char: "🎮", tags: "mando consola juego", cat: "fuego" },
     { char: "🤖", tags: "robot bot ia", cat: "fuego" },
-    // ... (Mantén los de ventas y caras que ya tienes) ...
+
     // ANIMALES Y NATURALEZA
     { char: "🐶", tags: "perro animal mascota", cat: "animales" },
     { char: "🐱", tags: "gato animal miau", cat: "animales" },
@@ -133,7 +133,7 @@ const emojiData = [
     { char: "🐊", tags: "cocodrilo", cat: "animales" },
     { char: "🐅", tags: "tigre", cat: "animales" },
     { char: "🐆", tags: "leopardo", cat: "animales" },
-    { char: "🦓", tags: "cebra", cat: "animales" },
+    { char: "cebra", char: "🦓", tags: "cebra", cat: "animales" },
     { char: "🦍", tags: "gorila", cat: "animales" },
     { char: "🦧", tags: "orangutan", cat: "animales" },
     { char: "🐘", tags: "elefante", cat: "animales" },
@@ -186,17 +186,7 @@ const emojiData = [
     { char: "🌻", tags: "girasol", cat: "animales" },
     { char: "🌼", tags: "flor blanca", cat: "animales" },
     { char: "🌷", tags: "tulipan", cat: "animales" },
-    { char: "🌱", tags: "planta", cat: "animales" },
-    { char: "🌲", tags: "pino", cat: "animales" },
-    { char: "🌳", tags: "arbol", cat: "animales" },
-    { char: "🌴", tags: "palmera", cat: "animales" },
-    { char: "🌵", tags: "cactus", cat: "animales" },
     { char: "🌾", tags: "arroz planta", cat: "animales" },
-    { char: "🌿", tags: "hierba", cat: "animales" },
-    { char: "🍀", tags: "trebol", cat: "animales" },
-    { char: "🍁", tags: "hoja", cat: "animales" },
-    { char: "🍂", tags: "otoño", cat: "animales" },
-    { char: "🍃", tags: "hojas", cat: "animales" },
 
     // COMIDAS Y BEBIDAS
     { char: "🍎", tags: "manzana fruta roja", cat: "comida" },
@@ -210,7 +200,7 @@ const emojiData = [
     { char: "🍈", tags: "melon", cat: "comida" },
     { char: "🍒", tags: "cerezas fruta", cat: "comida" },
     { char: "🍑", tags: "durazno fruta", cat: "comida" },
-    { char: "🍍", tags: "piña fruta", cat: "comida" },
+    { char: "piña", char: "🍍", tags: "piña fruta", cat: "comida" },
     { char: "🥭", tags: "mango fruta", cat: "comida" },
     { char: "🥥", tags: "coco fruta", cat: "comida" },
     { char: "🥝", tags: "kiwi fruta", cat: "comida" },
@@ -394,7 +384,7 @@ const emojiData = [
     { char: "🛵", tags: "scooter vespa", cat: "viajes" },
     { char: "🚲", tags: "bicicleta bici", cat: "viajes" },
     { char: "🛴", tags: "patinete", cat: "viajes" },
-    { char: "🛹", tags: "skate", cat: "viajes" },
+    { char: "skateboard", char: "🛹", tags: "skate", cat: "viajes" },
     { char: "🚏", tags: "parada bus", cat: "viajes" },
     { char: "🛤️", tags: "vias tren", cat: "viajes" },
     { char: "⛽", tags: "gasolinera", cat: "viajes" },
@@ -441,6 +431,7 @@ const emojiData = [
     { char: "🇺🇸", tags: "bandera usa estados unidos us", cat: "banderas" },
     { char: "🇻🇪", tags: "bandera venezuela ve", cat: "banderas" },
 ];
+
 // 2. ELEMENTOS DEL DOM
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
@@ -450,8 +441,27 @@ const btnCopyAll = document.getElementById('btnCopyAll');
 const btnClear = document.getElementById('btnClear');
 const toast = document.getElementById('toast');
 
-// 3. BUSCADOR INTELIGENTE (MEJORA 1: Sin tildes y flexible)
+// 3. FUNCIONES GLOBALES (Blindadas para el HTML)
+window.filterCategory = function(cat) {
+    const fullLibrary = document.getElementById('fullLibrary');
+    if (fullLibrary) fullLibrary.classList.add('hidden'); // Cierra la biblioteca al filtrar
+    renderEmojis(searchInput.value, cat);
+};
+
+window.toggleLibrary = function() {
+    const fullLibrary = document.getElementById('fullLibrary');
+    if (fullLibrary) {
+        fullLibrary.classList.toggle('hidden');
+    }
+};
+
+window.renderByGroup = function(group) {
+    renderEmojis("", group);
+};
+
+// 4. BUSCADOR INTELIGENTE
 function renderEmojis(filter = "", category = "todos") {
+    if (!grid) return;
     grid.innerHTML = "";
     
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -464,15 +474,16 @@ function renderEmojis(filter = "", category = "todos") {
         return matchesSearch && matchesCat;
     });
 
-    // --- NUEVO: FEEDBACK DE "SIN RESULTADOS" ---
     if (filtered.length === 0) {
         const noResults = document.createElement('div');
         noResults.className = 'no-results';
+        noResults.style.gridColumn = "1/-1";
+        noResults.style.padding = "20px";
+        noResults.style.opacity = "0.7";
         noResults.innerHTML = `<p>No se encontraron emojis para "<strong>${filter}</strong>"</p><span>Intenta con: fuego, amor, ventas...</span>`;
         grid.appendChild(noResults);
         return;
     }
-    // -------------------------------------------
 
     filtered.forEach(emoji => {
         const div = document.createElement('div');
@@ -483,28 +494,24 @@ function renderEmojis(filter = "", category = "todos") {
     });
 }
 
-// 4. LÓGICA DE EDICIÓN INDIVIDUAL (MEJORA 2)
-// Escuchamos cuando el usuario borra o escribe manualmente en la barra
-composer.addEventListener('input', () => {
-    updateCounter();
-});
-
+// 5. LÓGICA DEL COMPOSER
 function addEmojiToComposer(char) {
+    if (!composer) return;
     composer.value += char;
     updateCounter();
-    
-    // Feedback visual
     composer.style.borderColor = "var(--primary)";
     setTimeout(() => composer.style.borderColor = "#444", 200);
 }
 
 function updateCounter() {
-    // Contamos visualmente (soporta emojis complejos como 1 solo caracter)
+    if (!charCounter || !composer) return;
     const count = [...composer.value].length;
     charCounter.textContent = count;
 }
 
-// 5. ACCIONES
+composer.addEventListener('input', updateCounter);
+
+// 6. ACCIONES
 btnCopyAll.onclick = () => {
     if (composer.value.length > 0) {
         navigator.clipboard.writeText(composer.value).then(() => {
@@ -520,12 +527,8 @@ btnClear.onclick = () => {
     updateCounter();
 };
 
-// 6. UTILIDADES
-function filterCategory(cat) {
-    renderEmojis(searchInput.value, cat);
-}
-
 function showToast(message) {
+    if (!toast) return;
     toast.textContent = message;
     toast.classList.remove('hidden');
     setTimeout(() => {
@@ -533,7 +536,7 @@ function showToast(message) {
     }, 2000);
 }
 
-// Listeners
+// 7. LISTENERS
 searchInput.addEventListener('input', (e) => {
     renderEmojis(e.target.value);
 });
