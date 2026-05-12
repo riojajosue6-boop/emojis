@@ -1,8 +1,36 @@
+
 // ==========================================
-// 1. BASE DE DATOS MASIVA (Optimizada y Aumentada)
+// 1. BASE DE DATOS MASIVA (Completa y Organizada)
 // ==========================================
 const emojiData = [
-    // --- CATEGORÍA: CARAS Y PERSONAS (caras) ---
+    // --- CARAS (emociones) ---
+    { char: "😀", tags: "cara feliz sonrisa alegre", cat: "caras" },
+    { char: "😃", tags: "cara feliz ojos abiertos", cat: "caras" },
+    { char: "😄", tags: "cara risa ojos cerrados", cat: "caras" },
+    { char: "😁", tags: "cara radiante dientes", cat: "caras" },
+    { char: "😆", tags: "cara carcajada", cat: "caras" },
+    { char: "😅", tags: "cara sudor risa", cat: "caras" },
+    { char: "😂", tags: "risa lagrimas joy", cat: "caras" },
+    { char: "🤣", tags: "risa suelo rotfl", cat: "caras" },
+    { char: "😊", tags: "sonrisa mejillas", cat: "caras" },
+    { char: "😇", tags: "angel inocente", cat: "caras" },
+    { char: "🥰", tags: "amor corazones enamorado", cat: "caras" },
+    { char: "😍", tags: "ojos corazon amor", cat: "caras" },
+    { char: "🤩", tags: "estrellas ojos", cat: "caras" },
+    { char: "😘", tags: "beso corazon", cat: "caras" },
+    { char: "😋", tags: "lengua comida delicioso", cat: "caras" },
+    { char: "🤑", tags: "dinero lengua ojos", cat: "caras" },
+    { char: "🤔", tags: "pensar duda", cat: "caras" },
+    { char: "🤫", tags: "silencio shh", cat: "caras" },
+    { char: "😎", tags: "gafas sol genial cool", cat: "caras" },
+    { char: "🥳", tags: "fiesta celebracion", cat: "caras" },
+    { char: "🤯", tags: "cabeza explosion mente", cat: "caras" },
+    { char: "🥺", tags: "por favor ojitos", cat: "caras" },
+    { char: "😱", tags: "grito susto wow", cat: "caras" },
+    { char: "😭", tags: "llanto fuerte lloro", cat: "caras" },
+    { char: "😡", tags: "rabia rojo enfadado", cat: "caras" },
+    { char: "💀", tags: "calavera muerte", cat: "caras" },
+    { char: "🧠", tags: "cerebro mente inteligencia", cat: "caras" },
     { char: "😀", tags: "cara feliz sonrisa alegre", cat: "caras" },
     { char: "😃", tags: "cara feliz ojos abiertos", cat: "caras" },
     { char: "😄", tags: "cara risa ojos cerrados", cat: "caras" },
@@ -34,8 +62,31 @@ const emojiData = [
     { char: "🦾", tags: "brazo robot fuerte", cat: "caras" },
     { char: "🧠", tags: "cerebro mente inteligencia", cat: "caras" },
 
-    // --- CATEGORÍA: VENTAS Y NEGOCIOS (ventas) ---
+    // --- VENTAS Y NEGOCIOS (ventas) ---
     { char: "💰", tags: "dinero bolsa ventas cash", cat: "ventas" },
+    { char: "💵", tags: "billete dolar dinero", cat: "ventas" },
+    { char: "💹", tags: "grafica subir mercado", cat: "ventas" },
+    { char: "📈", tags: "crecimiento tendencia", cat: "ventas" },
+    { char: "🛍️", tags: "compras bolsa tienda shop", cat: "ventas" },
+    { char: "🛒", tags: "carrito compra", cat: "ventas" },
+    { char: "🏷️", tags: "etiqueta oferta precio", cat: "ventas" },
+    { char: "💳", tags: "tarjeta credito pago", cat: "ventas" },
+    { char: "💎", tags: "diamante joya premium", cat: "ventas" },
+    { char: "🎁", tags: "regalo sorpresa bono", cat: "ventas" },
+    { char: "📢", tags: "anuncio megafono atencion", cat: "ventas" },
+    { char: "📣", tags: "altavoz noticia", cat: "ventas" },
+    { char: "🔔", tags: "campana notificacion", cat: "ventas" },
+    { char: "🎯", tags: "objetivo meta blanco", cat: "ventas" },
+    { char: "🏆", tags: "trofeo ganador premio", cat: "ventas" },
+    { char: "🤝", tags: "trato acuerdo manos", cat: "ventas" },
+    { char: "💡", tags: "idea luz brillante", cat: "ventas" },
+    { char: "💻", tags: "laptop pc trabajo", cat: "ventas" },
+    { char: "📱", tags: "movil celular whatsapp contacto", cat: "ventas" },
+    { char: "📦", tags: "paquete envio entrega", cat: "ventas" },
+    { char: "✅", tags: "check verificado ok confirmado", cat: "ventas" },
+    { char: "⭐", tags: "estrella rating favorito", cat: "ventas" },
+    { char: "📍", tags: "ubicacion mapa lugar tienda", cat: "ventas" },
+        { char: "💰", tags: "dinero bolsa ventas cash", cat: "ventas" },
     { char: "💵", tags: "billete dolar dinero", cat: "ventas" },
     { char: "💹", tags: "grafica subir mercado", cat: "ventas" },
     { char: "📈", tags: "crecimiento tendencia", cat: "ventas" },
@@ -66,7 +117,17 @@ const emojiData = [
     { char: "📉", tags: "bajada perdida", cat: "ventas" },
     { char: "🏢", tags: "edificio empresa oficina", cat: "ventas" },
 
-    // --- CATEGORÍA: POPULARES / TENDENCIAS (fuego) ---
+    // --- TENDENCIAS (fuego) ---
+    { char: "🔥", tags: "fuego popular tendencia hot", cat: "fuego" },
+    { char: "✨", tags: "gemini brillos magia estrellas sparkle", cat: "fuego" },
+    { char: "🚀", tags: "cohete despegar crecer marketing", cat: "fuego" },
+    { char: "💯", tags: "cien perfecto excelente", cat: "fuego" },
+    { char: "💥", tags: "boom explosion impacto", cat: "fuego" },
+    { char: "⚡", tags: "rayo trueno energia rapido", cat: "fuego" },
+    { char: "🎉", tags: "celebracion fiesta", cat: "fuego" },
+    { char: "🎊", tags: "confeti", cat: "fuego" },
+    { char: "👇", tags: "abajo flecha mirar", cat: "fuego" },
+    { char: "🤖", tags: "robot bot ia", cat: "fuego" },
     { char: "🔥", tags: "fuego popular tendencia hot", cat: "fuego" },
     { char: "✨", tags: "brillos magia estrellas sparkle", cat: "fuego" },
     { char: "🚀", tags: "cohete despegar crecer marketing", cat: "fuego" },
@@ -79,13 +140,21 @@ const emojiData = [
     { char: "🎊", tags: "confeti", cat: "fuego" },
     { char: "🌊", tags: "ola mar agua", cat: "fuego" },
     { char: "☀️", tags: "sol verano luz", cat: "fuego" },
-    { char: "🎮", tags: "mando consola juego", cat: "fuego" },
-    { char: "🤖", tags: "robot bot ia", cat: "fuego" },
+    { char: "🎮", tags: "ps play mando consola juego", cat: "fuego" },
+    { char: "🤖", tags: "robocop gemini robot bot ia", cat: "fuego" },
     { char: "💎", tags: "diamante joya premium", cat: "fuego" },
     { char: "👇", tags: "abajo flecha mirar", cat: "fuego" },
 
-    // ANIMALES Y NATURALEZA
+    // --- ANIMALES ---
     { char: "🐶", tags: "perro animal mascota", cat: "animales" },
+    { char: "🐱", tags: "gato animal miau", cat: "animales" },
+    { char: "🦁", tags: "leon rey selva", cat: "animales" },
+    { char: "🐯", tags: "tigre animal", cat: "animales" },
+    { char: "🦒", tags: "jirafa alto", cat: "animales" },
+    { char: "🐘", tags: "elefante grande", cat: "animales" },
+    { char: "🦄", tags: "unicornio magia", cat: "animales" },
+    { char: "🐾", tags: "huellas perro", cat: "animales" },
+    { char: "🐶", tags: "dog perro animal mascota", cat: "animales" },
     { char: "🐱", tags: "gato animal miau", cat: "animales" },
     { char: "🦁", tags: "leon rey selva", cat: "animales" },
     { char: "🐯", tags: "tigre animal", cat: "animales" },
@@ -196,7 +265,17 @@ const emojiData = [
     { char: "🌷", tags: "tulipan", cat: "animales" },
     { char: "🌾", tags: "arroz planta", cat: "animales" },
 
-    // COMIDAS Y BEBIDAS
+    // --- COMIDA ---
+    { char: "🍎", tags: "manzana fruta roja", cat: "comida" },
+    { char: "🍌", tags: "banana platano", cat: "comida" },
+    { char: "🍉", tags: "sandia fruta", cat: "comida" },
+    { char: "🍓", tags: "fresa fruta", cat: "comida" },
+    { char: "🍔", tags: "hamburguesa fast food", cat: "comida" },
+    { char: "🍟", tags: "papas fritas", cat: "comida" },
+    { char: "🍕", tags: "pizza comida italiana", cat: "comida" },
+    { char: "🌮", tags: "taco mexicano", cat: "comida" },
+    { char: "🍺", tags: "cerveza jarra", cat: "comida" },
+    { char: "🥤", tags: "soda vaso", cat: "comida" },
     { char: "🍎", tags: "manzana fruta roja", cat: "comida" },
     { char: "🍐", tags: "pera fruta", cat: "comida" },
     { char: "🍊", tags: "naranja fruta", cat: "comida" },
@@ -301,7 +380,7 @@ const emojiData = [
     { char: " Ten", char: "🍴", tags: "tenedor cuchillo", cat: "comida" },
     { char: "🥄", tags: "cuchara", cat: "comida" },
 
-    // VIAJES Y LUGARES
+    // --- VIAJES ---
     { char: "🗺️", tags: "mapa mundo", cat: "viajes" },
     { char: "🗾", tags: "japon mapa", cat: "viajes" },
     { char: "🧭", tags: "brujula norte", cat: "viajes" },
@@ -419,7 +498,7 @@ const emojiData = [
     { char: "🚀", tags: "cohete espacio despegar", cat: "viajes" },
     { char: "🛸", tags: "ovni alien", cat: "viajes" },
 
-    // --- CATEGORÍA: BANDERAS (cat: banderas) ---
+    // --- BANDERAS ---
     { char: "🇦🇷", tags: "argentina bandera america sur", cat: "banderas" },
     { char: "🇧🇴", tags: "bolivia bandera america sur", cat: "banderas" },
     { char: "🇧🇷", tags: "brasil brazil bandera america sur", cat: "banderas" },
@@ -439,28 +518,13 @@ const emojiData = [
     { char: "🏁", tags: "bandera cuadros carrera", cat: "banderas" },
     { char: "🏴‍☠️", tags: "pirata bandera calavera", cat: "banderas" },
     { char: "🏳️‍🌈", tags: "arcoiris bandera pride lgbt", cat: "banderas" },
-    
-    // --- CATEGORÍA: SÍMBOLOS Y ESTRUCTURA ---
-    { char: "⚠️", tags: "atencion advertencia cuidado peligro alerta", cat: "simbolos" },
-    { char: "🚫", tags: "prohibido no denegado stop", cat: "simbolos" },
-    { char: "❌", tags: "error equis no aspa", cat: "simbolos" },
-    { char: "⭕", tags: "circulo rojo o ok", cat: "simbolos" },
-    { char: "🛑", tags: "stop pare alto", cat: "simbolos" },
-    { char: "✅", tags: "check verificado ok hecho", cat: "simbolos" },
-    { char: "💹", tags: "grafica mercado subir", cat: "simbolos" },
-    { char: "🌐", tags: "web internet global", cat: "simbolos" },
-    { char: "⬅️", tags: "flecha izquierda", cat: "simbolos" },
-    { char: "⬆️", tags: "flecha arriba", cat: "simbolos" },
-    { char: "⬇️", tags: "flecha abajo", cat: "simbolos" },
-    { char: "➡️", tags: "flecha derecha", cat: "simbolos" },
-    { char: "🔃", tags: "recargar flechas circulo", cat: "simbolos" },
-    { char: "➕", tags: "mas suma positivo", cat: "simbolos" },
-    { char: "➖", tags: "menos resta negativo", cat: "simbolos" },
-    { char: "💲", tags: "dolar dinero precio", cat: "simbolos" },
-    { char: "❓", tags: "pregunta duda", cat: "simbolos" },
-    { char: "❗", tags: "exclamacion alerta", cat: "simbolos" },
 
-    // --- CATEGORÍA: HERRAMIENTAS Y TECNOLOGÍA ---
+    // --- HERRAMIENTAS ---
+    { char: "🛠️", tags: "herramientas soporte reparar", cat: "herramientas" },
+    { char: "🔧", tags: "llave inglesa ajustar", cat: "herramientas" },
+    { char: "⚙️", tags: "engranaje ajustes configuracion", cat: "herramientas" },
+    { char: "🔨", tags: "martillo", cat: "herramientas" },
+    { char: "🧰", tags: "caja herramientas", cat: "herramientas" },
     { char: "💻", tags: "laptop ordenador computadora pc mac", cat: "herramientas" },
     { char: "🖥️", tags: "monitor pantalla escritorio", cat: "herramientas" },
     { char: "⌨️", tags: "teclado escribir", cat: "herramientas" },
@@ -485,42 +549,52 @@ const emojiData = [
     { char: "💊", tags: "pastilla medicina salud", cat: "herramientas" },
     { char: "🩺", tags: "estetoscopio medico", cat: "herramientas" },
     { char: "🧹", tags: "escoba limpiar", cat: "herramientas" },
-    { char: "🧯", tags: "extintor fuego seguridad", cat: "herramientas" }
+    { char: "🧯", tags: "extintor fuego seguridad", cat: "herramientas" },
+
+    // --- SIMBOLOS ---
+    { char: "⚠️", tags: "atencion advertencia", cat: "simbolos" },
+    { char: "❓", tags: "pregunta duda", cat: "simbolos" },
+    { char: "❗", tags: "exclamacion alerta", cat: "simbolos" },
+    { char: "⚠️", tags: "atencion advertencia cuidado peligro alerta", cat: "simbolos" },
+    { char: "🚫", tags: "prohibido no denegado stop", cat: "simbolos" },
+    { char: "❌", tags: "error equis no aspa", cat: "simbolos" },
+    { char: "⭕", tags: "circulo rojo o ok", cat: "simbolos" },
+    { char: "🛑", tags: "stop pare alto", cat: "simbolos" },
+    { char: "✅", tags: "check verificado ok hecho", cat: "simbolos" },
+    { char: "💹", tags: "grafica mercado subir", cat: "simbolos" },
+    { char: "🌐", tags: "web internet global", cat: "simbolos" },
+    { char: "⬅️", tags: "flecha izquierda", cat: "simbolos" },
+    { char: "⬆️", tags: "flecha arriba", cat: "simbolos" },
+    { char: "⬇️", tags: "flecha abajo", cat: "simbolos" },
+    { char: "➡️", tags: "flecha derecha", cat: "simbolos" },
+    { char: "🔃", tags: "recargar flechas circulo", cat: "simbolos" },
+    { char: "➕", tags: "mas suma positivo", cat: "simbolos" },
+    { char: "➖", tags: "menos resta negativo", cat: "simbolos" },
+    { char: "💲", tags: "dolar dinero precio", cat: "simbolos" },
+      
 ];
 
 // ==========================================
-// 2. CONFIGURACIÓN, MAPEO Y FUENTES
+// 2. DICCIONARIO DE FUENTES UNICODE
 // ==========================================
-const categoryMap = {
-    'sugeridos': 'fuego',
-    'ventas': 'ventas',
-    'emociones': 'caras',
-    'herramientas': 'herramientas',
-    'simbolos': 'simbolos',
-    'banderas': 'banderas',
-    'comida': 'comida',
-    'viajes': 'viajes',
-    'animales': 'animales'
-};
-
-const fonts = {
-    negrita: {
+const unicodeFonts = {
+    bold: {
         a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
         A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭",
         0: "𝟬", 1: "𝟭", 2: "𝟮", 3: "𝟯", 4: "𝟰", 5: "𝟱", 6: "𝟲", 7: "𝟳", 8: "𝟴", 9: "𝟵"
     },
-    cursiva: {
+    italic: {
         a: "𝒶", b: "𝒷", c: "𝒸", d: "𝒹", e: "𝑒", f: "𝒻", g: "𝑔", h: "𝒽", i: "𝒾", j: "𝒿", k: "𝓀", l: "𝓁", m: "𝓂", n: "𝓃", o: "𝑜", p: "𝓅", q: "𝓆", r: "𝓇", s: "𝓈", t: "𝓉", u: "𝓊", v: "𝓋", w: "𝓌", x: "𝓍", y: "𝓎", z: "𝓏",
         A: "𝒜", B: "𝐵", C: "𝒞", D: "𝒟", E: "𝐸", F: "𝐹", G: "𝒢", H: "𝐻", I: "𝐼", J: "𝒥", K: "𝒦", L: "𝐿", M: "𝑀", N: "𝒩", O: "𝒪", P: "𝒫", Q: "𝒬", R: "𝑅", S: "𝒮", T: "𝒯", U: "𝒰", V: "𝒱", W: "𝒲", X: "𝒳", Y: "𝒴", Z: "𝒵"
     },
-    monocromo: {
+    monospace: {
         a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "𝚚", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣",
         A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", K: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉"
     }
 };
 
 // ==========================================
-// 3. SELECTORES
+// 3. LÓGICA DE LA APLICACIÓN
 // ==========================================
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
@@ -529,50 +603,47 @@ const charCounter = document.getElementById('charCounter');
 const btnCopyAll = document.getElementById('btnCopyAll');
 const btnClear = document.getElementById('btnClear');
 const toast = document.getElementById('toast');
-const fontResults = document.getElementById('fontResults');
+const fontSelector = document.getElementById('fontSelector');
+const btnBold = document.getElementById('btnBold');
+const btnItalic = document.getElementById('btnItalic');
 
-// ==========================================
-// 4. FUNCIONES DE CORE
-// ==========================================
-
+// --- Inserción y Conteos ---
 function updateCounter() {
-    if (!charCounter || !composer) return;
-    charCounter.textContent = [...composer.value].length;
+    charCounter.textContent = `${[...composer.value].length} caracteres`;
 }
 
-function updateFontResults() {
-    if (!fontResults || !composer) return;
-    const text = composer.value;
-    fontResults.innerHTML = "";
-    if ([...text].length === 0) return;
-
-    Object.keys(fonts).forEach(style => {
-        let converted = "";
-        for (let char of text) {
-            converted += fonts[style][char] || char;
-        }
-        const div = document.createElement('div');
-        div.className = 'font-item';
-        div.textContent = converted;
-        div.onclick = () => {
-            navigator.clipboard.writeText(converted).then(() => showToast(`¡Copiado!`));
-        };
-        fontResults.appendChild(div);
-    });
-}
-
-function addEmojiToComposer(char) {
-    if (!composer) return;
+function addEmoji(char) {
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
     composer.setRangeText(char, start, end, 'end');
     composer.focus();
     updateCounter();
-    updateFontResults();
 }
 
+// --- Lógica de Fuentes (Word Style) ---
+function transformText(style) {
+    const start = composer.selectionStart;
+    const end = composer.selectionEnd;
+    const selectedText = composer.value.substring(start, end);
+
+    if (selectedText === "") {
+        showToast("Selecciona un texto primero");
+        return;
+    }
+
+    if (style === "normal") return;
+
+    let newText = "";
+    for (let char of selectedText) {
+        newText += unicodeFonts[style][char] || char;
+    }
+
+    composer.setRangeText(newText, start, end, 'select');
+    composer.focus();
+}
+
+// --- Renderizado de Emojis ---
 function renderEmojis(filter = "", category = "fuego") {
-    if (!grid) return;
     grid.innerHTML = "";
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const searchFilter = normalize(filter.toLowerCase());
@@ -582,43 +653,27 @@ function renderEmojis(filter = "", category = "fuego") {
         return filter !== "" ? itemTags.includes(searchFilter) : item.cat === category;
     });
 
-    if (filtered.length === 0 && filter !== "") {
-        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5; color: white;">Sin resultados para "${filter}"</div>`;
-        return;
-    }
-
     filtered.forEach(emoji => {
         const div = document.createElement('div');
         div.className = 'emoji-item';
         div.textContent = emoji.char;
-        div.onclick = () => addEmojiToComposer(emoji.char);
+        div.onclick = () => addEmoji(emoji.char);
         grid.appendChild(div);
     });
 }
 
-// ==========================================
-// 5. NAVEGACIÓN Y ACCIONES
-// ==========================================
-
-window.filterCategory = function(cat) {
-    const lib = document.getElementById('fullLibrary');
-    if (lib) lib.classList.add('hidden');
-    if (searchInput) searchInput.value = "";
-    renderEmojis("", categoryMap[cat] || cat);
+// --- Navegación ---
+window.filterCategory = (cat) => {
+    document.querySelectorAll('.category-nav button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderEmojis("", cat);
 };
 
-window.toggleLibrary = function() {
-    const lib = document.getElementById('fullLibrary');
-    if (lib) lib.classList.toggle('hidden');
+window.toggleLibrary = () => {
+    document.getElementById('fullLibrary').classList.toggle('hidden');
 };
 
-function showToast(message) {
-    if (!toast) return;
-    toast.textContent = message;
-    toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 2000);
-}
-
+// --- Acciones de Botones ---
 btnCopyAll.onclick = () => {
     if (composer.value.length > 0) {
         navigator.clipboard.writeText(composer.value).then(() => showToast("¡Publicación copiada!"));
@@ -628,20 +683,25 @@ btnCopyAll.onclick = () => {
 btnClear.onclick = () => {
     composer.value = "";
     updateCounter();
-    updateFontResults();
     composer.focus();
 };
 
-// LISTENERS
-if (searchInput) searchInput.addEventListener('input', (e) => renderEmojis(e.target.value));
-if (composer) {
-    composer.addEventListener('input', () => {
-        updateCounter();
-        updateFontResults();
-    });
-}
+btnBold.onclick = () => transformText('bold');
+btnItalic.onclick = () => transformText('italic');
+fontSelector.onchange = (e) => transformText(e.target.value);
 
+// --- Event Listeners ---
+searchInput.oninput = (e) => renderEmojis(e.target.value);
+composer.oninput = updateCounter;
+
+// Inicio
 document.addEventListener('DOMContentLoaded', () => {
     renderEmojis("", "fuego");
     updateCounter();
 });
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 2000);
+}
