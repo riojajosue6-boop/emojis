@@ -629,23 +629,29 @@ function addEmoji(char) {
 }
 
 function transformSelection(style) {
+    // 1. Obtenemos las posiciones actuales
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
+    
+    // 2. Extraemos el texto
     const selectedText = composer.value.substring(start, end);
 
-    if (!selectedText) {
-        showToast("Selecciona un texto primero");
+    // 3. Si no hay nada seleccionado, avisamos y salimos
+    if (start === end || !selectedText) {
+        showToast("Selecciona el texto primero");
         return;
     }
 
-    if (style === "normal") return;
-
+    // 4. Transformamos carácter por carácter
     let transformed = "";
     for (let char of selectedText) {
-        transformed += fonts[style][char] || char;
+        transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
     }
 
+    // 5. Aplicamos el cambio
     composer.setRangeText(transformed, start, end, 'select');
+    
+    // 6. DEVOLVEMOS EL FOCO (Vital para que no se pierda la selección)
     composer.focus();
     updateCounter();
 }
@@ -704,19 +710,19 @@ btnBold.onclick = () => transformSelection('bold');
 btnItalic.onclick = () => transformSelection('italic');
 // CORRECCIÓN: Reseteo del selector para permitir cambios infinitos
 // Asegúrate de que tu evento onchange se vea exactamente así:
-fontSelector.onchange = (e) => {
-    const selectedStyle = e.target.value;
-    
-    // Solo actuamos si no es la opción por defecto
+fontSelector.onchange = function(e) {
+    const selectedStyle = this.value;
+
     if (selectedStyle !== "normal") {
+        // Ejecutamos la transformación
         transformSelection(selectedStyle);
         
-        // CRUCIAL: Reseteamos el valor al instante para que el próximo clic 
-        // vuelva a contar como un "cambio"
-        e.target.value = "normal"; 
+        // RESETEAMOS EL SELECTOR AL INSTANTE
+        // Esto permite elegir la misma fuente varias veces seguidas
+        this.value = "normal";
     }
     
-    // Obligamos al cursor a volver al editor
+    // Forzamos el foco de vuelta al editor
     composer.focus();
 };
 
