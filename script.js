@@ -574,7 +574,9 @@ const emojiData = [
       
 ];
 
-// 1. SELECTORES Y ESTADO GLOBAL
+// ==========================================
+// 2. SELECTORES Y ESTADO GLOBAL
+// ==========================================
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
 const composer = document.getElementById('emojiComposer');
@@ -586,10 +588,11 @@ const btnBold = document.getElementById('btnBold');
 const btnItalic = document.getElementById('btnItalic');
 const toast = document.getElementById('toast');
 
-// Variable vital: guarda la selección para que el menú no la "robe"
 let lastSelection = { start: 0, end: 0 };
 
-// 2. DICCIONARIO DE FUENTES (Mantenido)
+// ==========================================
+// 3. DICCIONARIO DE FUENTES
+// ==========================================
 const fonts = {
     bold: {
         a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇",
@@ -610,13 +613,14 @@ const fonts = {
     }
 };
 
-// 3. FUNCIONES CORE
+// ==========================================
+// 4. FUNCIONES CORE
+// ==========================================
 function updateCounter() {
     const count = [...composer.value].length;
     charCounter.textContent = `${count} caracteres`;
 }
 
-// Captura la posición del texto constantemente
 composer.onkeyup = composer.onmouseup = composer.onselectionchange = () => {
     lastSelection.start = composer.selectionStart;
     lastSelection.end = composer.selectionEnd;
@@ -629,7 +633,6 @@ function addEmoji(char) {
     composer.setRangeText(char, start, end, 'end');
     composer.focus();
     updateCounter();
-    // Sincroniza la selección después de insertar
     lastSelection.start = lastSelection.end = composer.selectionStart;
 }
 
@@ -648,11 +651,9 @@ function transformSelection(style) {
         transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
     }
 
-    // Reemplazo directo para máxima compatibilidad
     const fullText = composer.value;
     composer.value = fullText.substring(0, start) + transformed + fullText.substring(end);
     
-    // Mantiene el texto resaltado y devuelve el foco
     composer.focus();
     composer.setSelectionRange(start, start + transformed.length);
     updateCounter();
@@ -677,11 +678,13 @@ function renderEmojis(filter = "", category = "fuego") {
     });
 }
 
-// 4. EVENTOS DE BOTONES
+// ==========================================
+// 5. EVENTOS E INICIO
+// ==========================================
 fontSelector.onchange = function() {
     if (this.value !== "normal") {
         transformSelection(this.value);
-        this.value = "normal"; // Reset para permitir re-clics
+        this.value = "normal";
     }
     composer.focus();
 };
@@ -716,6 +719,7 @@ function showToast(msg) {
 
 searchInput.oninput = (e) => renderEmojis(e.target.value);
 
+// ESTO ES LO QUE ESTABA "ABIERTO":
 document.addEventListener('DOMContentLoaded', () => {
     renderEmojis("", "fuego");
     updateCounter();
