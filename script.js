@@ -702,9 +702,20 @@ btnClear.onclick = () => {
 
 btnBold.onclick = () => transformSelection('bold');
 btnItalic.onclick = () => transformSelection('italic');
+// CORRECCIÓN: Reseteo del selector para permitir cambios infinitos
 fontSelector.onchange = (e) => {
-    transformSelection(e.target.value);
-    e.target.value = "normal"; // Resetea el selector después de usarlo
+    const selectedStyle = e.target.value;
+    
+    if (selectedStyle !== "normal") {
+        transformSelection(selectedStyle);
+        
+        // Esta es la clave: reseteamos el selector a la opción inicial
+        // para que el próximo clic sea detectado como un cambio nuevo.
+        e.target.value = "normal"; 
+    }
+    
+    // Devolvemos el foco al editor para que no tengas que hacer clic de nuevo
+    composer.focus();
 };
 
 searchInput.oninput = (e) => renderEmojis(e.target.value);
