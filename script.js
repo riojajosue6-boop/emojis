@@ -651,7 +651,6 @@ function updateCounter() {
     charCounter.textContent = count;
 }
 
-// 3. INSERCIÓN EXACTA EN EL CURSOR
 function addEmojiToComposer(char) {
     if (!composer) return;
 
@@ -659,17 +658,13 @@ function addEmojiToComposer(char) {
     const end = composer.selectionEnd;
     const text = composer.value;
 
-    // Insertar emoji
-    composer.value = text.substring(0, start) + char + text.substring(end);
+    // Usamos el método moderno para evitar que el navegador se confunda con los bytes del emoji
+    composer.setRangeText(char, start, end, 'end');
 
-    // Reposicionar cursor
-    const newPos = start + [...char].length;
-    composer.selectionStart = composer.selectionEnd = newPos;
-    
     composer.focus();
     updateCounter();
     
-    // Si tienes la función de fuentes, llámala aquí:
+    // Si la función de fuentes te da problemas, desactívala un momento para probar
     if (typeof updateFontResults === 'function') updateFontResults();
 }
 
