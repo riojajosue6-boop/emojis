@@ -3,62 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmojiExpress | Editor de Publicaciones Profesional</title>
+    <title>EmojiExpress | Editor de Marketing Profesional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>EmojiExpress</h1>
-        <p>Arma tu publicación con emojis y letras decoradas de forma rápida</p>
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar emoji (ej: cohete, check, bolivia)...">
-        </div>
-    </header>
-    
-    <section class="workstation">
-        <div class="composer-wrapper">
-            <div class="input-group">
-                <textarea id="emojiComposer" placeholder="Escribe tu mensaje aquí... Usa Enter para párrafos" rows="4"></textarea>
-                <span id="charCounter" class="char-counter">0</span>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>EmojiExpress</h1>
+            <p>Editor de Publicaciones Profesional</p>
+        </header>
+
+        <main class="main-card">
+            <div class="card-header">
+                <span>Crear publicación</span>
             </div>
 
-            <div class="composer-actions">
-                <button id="btnCopyAll" class="btn-primary">Copiar Combo</button>
-                <button id="btnClear" class="btn-secondary">Limpiar</button>
+            <div class="editor-section">
+                <textarea id="emojiComposer" placeholder="Escribe tu publicación aquí..." rows="6"></textarea>
+                
+                <div class="editor-footer">
+                    <span id="charCounter">0 caracteres</span>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <section class="font-section">
-        <p class="font-hint">Haz clic en una opción para copiar el texto decorado:</p>
-        <div id="fontResults" class="font-results">
+            <div class="toolbar">
+                <div class="format-buttons">
+                    <button id="btnBold" title="Negrita"><b>B</b></button>
+                    <button id="btnItalic" title="Cursiva"><i>I</i></button>
+                    <select id="fontSelector">
+                        <option value="normal">Fuente Estándar</option>
+                        <option value="bold">Negrita Pro</option>
+                        <option value="italic">Cursiva Elegante</option>
+                        <option value="monospace">Monoespaciado</option>
+                        <option value="script">Manuscrita</option>
+                    </select>
+                </div>
+                <div class="action-buttons">
+                    <button id="btnCopyAll" class="btn-blue">Copiar Post</button>
+                    <button id="btnClear" class="btn-gray">Limpiar</button>
+                </div>
             </div>
-    </section>
-
-    <nav class="categories">
-        <button onclick="filterCategory('sugeridos')">Sugeridos</button>
-        <button onclick="filterCategory('ventas')">Ventas</button>
-        <button onclick="filterCategory('emociones')">Emociones</button>
-        <button onclick="filterCategory('herramientas')">Herramientas</button>
-        <button onclick="toggleLibrary()" class="btn-library-toggle">📂 Ver Todos</button>
-    </nav>
-
-    <div id="fullLibrary" class="hidden">
-        <div class="library-nav">
-            <button onclick="filterCategory('animales')"><span>🐾</span> Animales</button>
-            <button onclick="filterCategory('comida')"><span>🍔</span> Comida</button>
-            <button onclick="filterCategory('viajes')"><span>✈️</span> Viajes</button>
-            <button onclick="filterCategory('banderas')"><span>🏁</span> Banderas</button>
-            <button onclick="filterCategory('simbolos')"><span>🔣</span> Símbolos</button>
-        </div>
-    </div>
-
-    <main id="emojiGrid" class="emoji-grid">
         </main>
 
-    <div id="toast" class="toast hidden">¡Copiado con éxito!</div>
+        <section class="emoji-container">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar emoji (ej: ventas, flecha)...">
+            </div>
+
+            <nav class="category-nav">
+                <button onclick="filterCategory('sugeridos')" class="active">🔥 Sugeridos</button>
+                <button onclick="filterCategory('ventas')">💰 Ventas</button>
+                <button onclick="filterCategory('emociones')">😊 Emociones</button>
+                <button onclick="filterCategory('herramientas')">🛠️ Herramientas</button>
+                <button onclick="toggleLibrary()" class="btn-more">📂 Más</button>
+            </nav>
+
+            <div id="fullLibrary" class="hidden">
+                <div class="library-grid">
+                    <button onclick="filterCategory('animales')">🐾 Animales</button>
+                    <button onclick="filterCategory('comida')">🍔 Comida</button>
+                    <button onclick="filterCategory('viajes')">✈️ Viajes</button>
+                    <button onclick="filterCategory('banderas')">🏁 Banderas</button>
+                    <button onclick="filterCategory('simbolos')">🔣 Símbolos</button>
+                </div>
+            </div>
+
+            <div id="emojiGrid" class="emoji-grid-compact">
+                </div>
+        </section>
+
+        <div id="toast" class="toast hidden">¡Copiado con éxito!</div>
+    </div>
 
     <script src="script.js"></script>
 </body>
