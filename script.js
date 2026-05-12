@@ -703,18 +703,20 @@ btnClear.onclick = () => {
 btnBold.onclick = () => transformSelection('bold');
 btnItalic.onclick = () => transformSelection('italic');
 // CORRECCIÓN: Reseteo del selector para permitir cambios infinitos
+// Asegúrate de que tu evento onchange se vea exactamente así:
 fontSelector.onchange = (e) => {
     const selectedStyle = e.target.value;
     
+    // Solo actuamos si no es la opción por defecto
     if (selectedStyle !== "normal") {
         transformSelection(selectedStyle);
         
-        // Esta es la clave: reseteamos el selector a la opción inicial
-        // para que el próximo clic sea detectado como un cambio nuevo.
+        // CRUCIAL: Reseteamos el valor al instante para que el próximo clic 
+        // vuelva a contar como un "cambio"
         e.target.value = "normal"; 
     }
     
-    // Devolvemos el foco al editor para que no tengas que hacer clic de nuevo
+    // Obligamos al cursor a volver al editor
     composer.focus();
 };
 
