@@ -1,4 +1,6 @@
-// 1. BASE DE DATOS MASIVA DE EMOJIS
+// ==========================================
+// 1. BASE DE DATOS (Pega aquí tu emojiData)
+// ==========================================
 const emojiData = [
     // --- CATEGORÍA: CARAS Y PERSONAS (caras) ---
     { char: "😀", tags: "cara feliz sonrisa alegre", cat: "caras" },
@@ -633,10 +635,7 @@ const emojiData = [
     { char: "🛒", tags: "carrito compras ventas", cat: "herramientas" },
 ];
 
-// ==========================================
-// 1. BASE DE DATOS (Pega aquí tu emojiData)
-// ==========================================
-// const emojiData = [ ... ]; 
+ 
 
 // ==========================================
 // 2. CONFIGURACIÓN Y MAPEO
