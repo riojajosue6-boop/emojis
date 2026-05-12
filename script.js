@@ -577,24 +577,28 @@ const emojiData = [
 // ==========================================
 // 2. DICCIONARIO DE FUENTES UNICODE
 // ==========================================
-const unicodeFonts = {
+const fonts = {
     bold: {
-        a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
-        A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭",
-        0: "𝟬", 1: "𝟭", 2: "𝟮", 3: "𝟯", 4: "𝟰", 5: "𝟱", 6: "𝟲", 7: "𝟳", 8: "𝟴", 9: "𝟵"
+        a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇",
+        A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"𝗩",W:"𝗪",X:"𝗫",Y:"𝗬",Z:"𝗭",
+        0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵"
     },
     italic: {
-        a: "𝒶", b: "𝒷", c: "𝒸", d: "𝒹", e: "𝑒", f: "𝒻", g: "𝑔", h: "𝒽", i: "𝒾", j: "𝒿", k: "𝓀", l: "𝓁", m: "𝓂", n: "𝓃", o: "𝑜", p: "𝓅", q: "𝓆", r: "𝓇", s: "𝓈", t: "𝓉", u: "𝓊", v: "𝓋", w: "𝓌", x: "𝓍", y: "𝓎", z: "𝓏",
-        A: "𝒜", B: "𝐵", C: "𝒞", D: "𝒟", E: "𝐸", F: "𝐹", G: "𝒢", H: "𝐻", I: "𝐼", J: "𝒥", K: "𝒦", L: "𝐿", M: "𝑀", N: "𝒩", O: "𝒪", P: "𝒫", Q: "𝒬", R: "𝑅", S: "𝒮", T: "𝒯", U: "𝒰", V: "𝒱", W: "𝒲", X: "𝒳", Y: "𝒴", Z: "𝒵"
+        a:"𝒶",b:"𝒷",c:"𝒸",d:"𝒹",e:"𝑒",f:"𝒻",g:"𝑔",h:"𝒽",i:"𝒾",j:"𝒿",k:"𝓀",l:"𝓁",m:"𝓂",n:"𝓃",o:"𝑜",p:"𝓅",q:"𝓆",r:"𝓇",s:"𝓈",t:"𝓉",u:"𝓊",v:"𝓋",w:"𝓌",x:"𝓍",y:"𝓎",z:"𝓏",
+        A:"𝒜",B:"𝐵",C:"𝒞",D:"𝒟",E:"𝐸",F:"𝐹",G:"𝒢",H:"𝐻",I:"𝐼",J:"𝒥",K:"𝒦",L:"𝐿",M:"𝑀",N:"𝒩",O:"𝒪",P:"𝒫",Q:"𝒬",R:"𝑅",S:"𝒮",T:"𝒯",U:"𝒰",V:"𝒱",W:"𝒲",X:"𝒳",Y:"𝒴",Z:"𝒵"
     },
     monospace: {
-        a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "𝚚", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣",
-        A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", K: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉"
+        a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣",
+        A:"𝙰",B:"𝙱",C:"𝙲",D:"𝙳",E:"𝙴",F:"𝙵",G:"𝙶",H:"𝙷",I:"𝙸",J:"𝙹",K:"𝙺",L:"𝙻",M:"𝙼",N:"𝙽",O:"𝙾",P:"𝙿",Q:"𝚀",R:"𝚁",S:"𝚂",T:"𝚃",U:"𝚄",V:"𝚅",W:"𝚆",X:"𝚇",Y:"𝚈",Z:"𝚉"
+    },
+    script: {
+        a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃",
+        A:"𝓐",B:"𝓑",C:"𝓒",D:"𝓓",E:"𝓔",F:"𝓕",G:"𝓖",H:"𝓗",I:"𝓘",J:"𝓙",K:"𝓚",L:"尝",M:"𝓜",N:"𝓝",O:"𝓞",P:"𝓟",Q:"𝓠",R:"𝓡",S:"𝓢",T:"𝓣",U:"𝓤",V:"𝓥",W:"𝓦",X:"𝓧",Y:"𝓨",Z:"𝓩"
     }
 };
 
 // ==========================================
-// 3. LÓGICA DE LA APLICACIÓN
+// 3. SELECTORES Y ESTADO
 // ==========================================
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
@@ -602,52 +606,50 @@ const composer = document.getElementById('emojiComposer');
 const charCounter = document.getElementById('charCounter');
 const btnCopyAll = document.getElementById('btnCopyAll');
 const btnClear = document.getElementById('btnClear');
-const toast = document.getElementById('toast');
 const fontSelector = document.getElementById('fontSelector');
 const btnBold = document.getElementById('btnBold');
 const btnItalic = document.getElementById('btnItalic');
+const toast = document.getElementById('toast');
 
-// --- Inserción y Conteos ---
+// ==========================================
+// 4. FUNCIONES CORE
+// ==========================================
+
 function updateCounter() {
-    charCounter.textContent = `${[...composer.value].length} caracteres`;
+    const count = [...composer.value].length;
+    charCounter.textContent = `${count} caracteres`;
 }
 
 function addEmoji(char) {
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
-    
-    // Inserta el emoji
     composer.setRangeText(char, start, end, 'end');
-    
-    // IMPORTANTE: Mantiene el foco en el editor automáticamente
-    composer.focus(); 
-    
+    composer.focus(); // Devuelve el foco al editor
     updateCounter();
 }
 
-// --- Lógica de Fuentes (Word Style) ---
-function transformText(style) {
+function transformSelection(style) {
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
     const selectedText = composer.value.substring(start, end);
 
-    if (selectedText === "") {
+    if (!selectedText) {
         showToast("Selecciona un texto primero");
         return;
     }
 
     if (style === "normal") return;
 
-    let newText = "";
+    let transformed = "";
     for (let char of selectedText) {
-        newText += unicodeFonts[style][char] || char;
+        transformed += fonts[style][char] || char;
     }
 
-    composer.setRangeText(newText, start, end, 'select');
+    composer.setRangeText(transformed, start, end, 'select');
     composer.focus();
+    updateCounter();
 }
 
-// --- Renderizado de Emojis ---
 function renderEmojis(filter = "", category = "fuego") {
     grid.innerHTML = "";
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -655,6 +657,7 @@ function renderEmojis(filter = "", category = "fuego") {
 
     const filtered = emojiData.filter(item => {
         const itemTags = normalize(item.tags.toLowerCase());
+        // Si hay búsqueda, ignora la categoría y busca en todo
         return filter !== "" ? itemTags.includes(searchFilter) : item.cat === category;
     });
 
@@ -662,32 +665,32 @@ function renderEmojis(filter = "", category = "fuego") {
         const div = document.createElement('div');
         div.className = 'emoji-item';
         div.textContent = emoji.char;
+        div.title = emoji.tags;
         div.onclick = () => addEmoji(emoji.char);
         grid.appendChild(div);
     });
 }
 
-// --- Navegación ---
+function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 2000);
+}
+
+// ==========================================
+// 5. EVENTOS
+// ==========================================
+
 window.filterCategory = (cat, event) => {
-    // Evita cualquier comportamiento por defecto del navegador
-    if(event) event.preventDefault(); 
-    
+    if (event) event.preventDefault();
     document.querySelectorAll('.category-nav button').forEach(b => b.classList.remove('active'));
-    
-    // Si el evento existe, marcamos el botón como activo
-    if(event) event.currentTarget.classList.add('active');
-    
+    if (event) event.target.classList.add('active');
     renderEmojis("", cat);
 };
 
-window.toggleLibrary = () => {
-    document.getElementById('fullLibrary').classList.toggle('hidden');
-};
-
-// --- Acciones de Botones ---
 btnCopyAll.onclick = () => {
-    if (composer.value.length > 0) {
-        navigator.clipboard.writeText(composer.value).then(() => showToast("¡Publicación copiada!"));
+    if (composer.value) {
+        navigator.clipboard.writeText(composer.value).then(() => showToast("¡Copiado con éxito!"));
     }
 };
 
@@ -697,22 +700,18 @@ btnClear.onclick = () => {
     composer.focus();
 };
 
-btnBold.onclick = () => transformText('bold');
-btnItalic.onclick = () => transformText('italic');
-fontSelector.onchange = (e) => transformText(e.target.value);
+btnBold.onclick = () => transformSelection('bold');
+btnItalic.onclick = () => transformSelection('italic');
+fontSelector.onchange = (e) => {
+    transformSelection(e.target.value);
+    e.target.value = "normal"; // Resetea el selector después de usarlo
+};
 
-// --- Event Listeners ---
 searchInput.oninput = (e) => renderEmojis(e.target.value);
 composer.oninput = updateCounter;
 
-// Inicio
+// Carga Inicial
 document.addEventListener('DOMContentLoaded', () => {
     renderEmojis("", "fuego");
     updateCounter();
 });
-
-function showToast(message) {
-    toast.textContent = message;
-    toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 2000);
-}
