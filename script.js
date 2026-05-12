@@ -575,7 +575,7 @@ const emojiData = [
 ];
 
 // ==========================================
-// 2. SELECTORES Y ESTADO GLOBAL
+// 1. SELECTORES Y ESTADO GLOBAL
 // ==========================================
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
@@ -588,15 +588,16 @@ const btnBold = document.getElementById('btnBold');
 const btnItalic = document.getElementById('btnItalic');
 const toast = document.getElementById('toast');
 
+// Estado de selección crítico
 let lastSelection = { start: 0, end: 0 };
 
 // ==========================================
-// 3. DICCIONARIO DE FUENTES
+// 2. DICCIONARIO DE FUENTES (Mantenido)
 // ==========================================
 const fonts = {
     bold: {
         a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇",
-        A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"𝗩",W:"𝗪",X:"𝗫",Y:"𝗬",Z:"𝗭",
+        A:"𝗔",B:"𝗕",C:"Ｃ",D:"𝗗",E:"𝗘",F:"𝗙",G:"Ｇ",H:"Ｈ",I:"Ｉ",J:"Ｊ",K:"Ｋ",L:"Ｌ",M:"Ｍ",N:"Ｎ",O:"Ｏ",P:"Ｐ",Q:"𝗤",R:"Ｒ",S:"Ｓ",T:"Ｔ",U:"Ｕ",V:"Ｖ",W:"Ｗ",X:"𝗫",Y:"Ｙ",Z:"𝗭",
         0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵"
     },
     italic: {
@@ -605,7 +606,7 @@ const fonts = {
     },
     monospace: {
         a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎", f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣",
-        A:"𝙰",B:"𝙱",C:"𝙲",D:"𝙳",E:"𝙴",F:"𝙵",G:"𝙶",H:"𝙷",I:"𝙸",J:"𝙹",K:"𝙺",L:"𝙻",M:"𝙼",N:"𝙽",O:"𝙾",P:"𝙿",Q:"𝚀",R:"𝚁",S:"𝚂",T:"𝚃",U:"𝚄",V:"𝚅",W:"𝚆",X:"𝚇",Y:"𝚈",Z:"𝚉"
+        A:"𝙰",B:"𝙱",C:"𝙲",D:"𝙳",E:"𝙴",F:"𝙵",G:"𝙶",H:"𝙷",I:"𝙸",J:"𝙹",K:"𝙺",L:"𝙻",M:"𝙼",N:"𝙽",O:"𝙾",P:"𝙿",Q:"𝚀",R:"Ｒ",S:"𝚂",T:"𝚃",U:"𝚄",V:"𝚅",W:"𝚆",X:"𝚇",Y:"𝚈",Z:"𝚉"
     },
     script: {
         a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃",
@@ -614,18 +615,19 @@ const fonts = {
 };
 
 // ==========================================
-// 4. FUNCIONES CORE
+// 3. FUNCIONES CORE
 // ==========================================
+
 function updateCounter() {
-    const count = [...composer.value].length;
-    charCounter.textContent = `${count} caracteres`;
+    charCounter.textContent = `${[...composer.value].length} caracteres`;
 }
 
-composer.onkeyup = composer.onmouseup = composer.onselectionchange = () => {
+// Captura continua de selección
+const syncSelection = () => {
     lastSelection.start = composer.selectionStart;
     lastSelection.end = composer.selectionEnd;
-    updateCounter();
 };
+composer.onkeyup = composer.onmouseup = composer.onselectionchange = syncSelection;
 
 function addEmoji(char) {
     const start = lastSelection.start;
@@ -633,13 +635,14 @@ function addEmoji(char) {
     composer.setRangeText(char, start, end, 'end');
     composer.focus();
     updateCounter();
-    lastSelection.start = lastSelection.end = composer.selectionStart;
+    syncSelection();
 }
 
 function transformSelection(style) {
     const start = lastSelection.start;
     const end = lastSelection.end;
-    const selectedText = composer.value.substring(start, end);
+    const text = composer.value;
+    const selectedText = text.substring(start, end);
 
     if (start === end || !selectedText) {
         showToast("Selecciona el texto primero");
@@ -651,15 +654,16 @@ function transformSelection(style) {
         transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
     }
 
-    const fullText = composer.value;
-    composer.value = fullText.substring(0, start) + transformed + fullText.substring(end);
+    composer.value = text.substring(0, start) + transformed + text.substring(end);
     
+    // Devolver el foco y mantener la selección
     composer.focus();
     composer.setSelectionRange(start, start + transformed.length);
     updateCounter();
 }
 
 function renderEmojis(filter = "", category = "fuego") {
+    if (!grid) return;
     grid.innerHTML = "";
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const searchFilter = normalize(filter.toLowerCase());
@@ -679,22 +683,33 @@ function renderEmojis(filter = "", category = "fuego") {
 }
 
 // ==========================================
-// 5. EVENTOS E INICIO
+// 4. EVENTOS DE FUENTES (CORRECCIÓN DEFINITIVA)
 // ==========================================
+
+// Guardar selección justo antes de que el control robe el foco
+fontSelector.onmousedown = btnBold.onmousedown = btnItalic.onmousedown = syncSelection;
+
 fontSelector.onchange = function() {
-    if (this.value !== "normal") {
-        transformSelection(this.value);
-        this.value = "normal";
+    const style = this.value;
+    if (style !== "normal") {
+        // El pequeño delay permite que el navegador procese el cambio de foco correctamente
+        setTimeout(() => {
+            transformSelection(style);
+            this.value = "normal";
+        }, 50);
     }
-    composer.focus();
 };
 
 btnBold.onclick = () => transformSelection('bold');
 btnItalic.onclick = () => transformSelection('italic');
 
+// ==========================================
+// 5. ACCIONES GENERALES
+// ==========================================
+
 btnCopyAll.onclick = () => {
     if (composer.value) {
-        navigator.clipboard.writeText(composer.value).then(() => showToast("¡Copiado con éxito!"));
+        navigator.clipboard.writeText(composer.value).then(() => showToast("¡Publicación copiada!"));
     }
 };
 
@@ -719,7 +734,6 @@ function showToast(msg) {
 
 searchInput.oninput = (e) => renderEmojis(e.target.value);
 
-// ESTO ES LO QUE ESTABA "ABIERTO":
 document.addEventListener('DOMContentLoaded', () => {
     renderEmojis("", "fuego");
     updateCounter();
