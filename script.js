@@ -633,7 +633,43 @@ const emojiData = [
     { char: "🛒", tags: "carrito compras ventas", cat: "herramientas" },
 ];
 
-// 1. SELECTORES DE ELEMENTOS
+// ==========================================
+// 1. BASE DE DATOS (Pega aquí tu emojiData)
+// ==========================================
+// const emojiData = [ ... ]; 
+
+// ==========================================
+// 2. CONFIGURACIÓN Y MAPEO
+// ==========================================
+const categoryMap = {
+    'sugeridos': 'fuego',
+    'ventas': 'ventas',
+    'emociones': 'caras',
+    'herramientas': 'herramientas',
+    'simbolos': 'simbolos',
+    'banderas': 'banderas',
+    'comida': 'comida',
+    'viajes': 'viajes'
+};
+
+const fonts = {
+    negrita: {
+        a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
+        A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"
+    },
+    cursiva: {
+        a: "𝒶", b: "𝒷", c: "𝒸", d: "𝒹", e: "𝑒", f: "𝒻", g: "𝑔", h: "𝒽", i: "𝒾", j: "𝒿", k: "𝓀", l: "𝓁", m: "𝓂", n: "𝓃", o: "𝑜", p: "𝓅", q: "𝓆", r: "𝓇", s: "𝓈", t: "𝓉", u: "𝓊", v: "𝓋", w: "𝓌", x: "𝓍", y: "𝓎", z: "𝓏",
+        A: "𝒜", B: "𝐵", C: "𝒞", D: "𝒟", E: "𝐸", F: "𝐹", G: "𝒢", H: "𝐻", I: "𝐼", J: "𝒥", K: "𝒦", L: "𝐿", M: "𝑀", N: "𝒩", O: "𝒪", P: "𝒫", Q: "𝒬", R: "𝑅", S: "𝒮", T: "𝒯", U: "𝒰", V: "𝒱", W: "𝒲", X: "𝒳", Y: "𝒴", Z: "𝒵"
+    },
+    monocromo: {
+        a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "𝚚", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣",
+        A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", K: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉"
+    }
+};
+
+// ==========================================
+// 3. SELECTORES
+// ==========================================
 const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
 const composer = document.getElementById('emojiComposer');
@@ -641,14 +677,41 @@ const charCounter = document.getElementById('charCounter');
 const btnCopyAll = document.getElementById('btnCopyAll');
 const btnClear = document.getElementById('btnClear');
 const toast = document.getElementById('toast');
+const fontResults = document.getElementById('fontResults');
 
-// 2. FUNCIÓN DE CONTEO (Soporta saltos de línea y emojis complejos)
+// ==========================================
+// 4. FUNCIONES DE CORE
+// ==========================================
+
 function updateCounter() {
     if (!charCounter || !composer) return;
-    const text = composer.value;
-    // Contamos visualmente usando el operador spread
-    const count = [...text].length;
+    const count = [...composer.value].length;
     charCounter.textContent = count;
+}
+
+function updateFontResults() {
+    if (!fontResults || !composer) return;
+    const text = composer.value;
+    fontResults.innerHTML = "";
+
+    if ([...text].length === 0) return;
+
+    Object.keys(fonts).forEach(style => {
+        let converted = "";
+        for (let char of text) {
+            converted += fonts[style][char] || char;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'font-item';
+        div.textContent = converted;
+        div.onclick = () => {
+            navigator.clipboard.writeText(converted).then(() => {
+                showToast(`¡Texto en ${style} copiado!`);
+            });
+        };
+        fontResults.appendChild(div);
+    });
 }
 
 function addEmojiToComposer(char) {
@@ -656,19 +719,78 @@ function addEmojiToComposer(char) {
 
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
-    const text = composer.value;
 
-    // Usamos el método moderno para evitar que el navegador se confunda con los bytes del emoji
+    // Método moderno para insertar en el cursor y manejar historial de deshacer
     composer.setRangeText(char, start, end, 'end');
 
     composer.focus();
     updateCounter();
-    
-    // Si la función de fuentes te da problemas, desactívala un momento para probar
-    if (typeof updateFontResults === 'function') updateFontResults();
+    updateFontResults();
 }
 
-// 4. ACCIONES DE BOTONES
+function renderEmojis(filter = "", category = "fuego") {
+    if (!grid) return;
+    grid.innerHTML = "";
+    
+    const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const searchFilter = normalize(filter.toLowerCase());
+
+    const filtered = emojiData.filter(item => {
+        const itemTags = normalize(item.tags.toLowerCase());
+        const matchesSearch = itemTags.includes(searchFilter);
+        
+        // Prioridad: Si hay búsqueda, ignora categoría. Si no, filtra por cat.
+        if (filter !== "") {
+            return matchesSearch;
+        } else {
+            return item.cat === category;
+        }
+    });
+
+    if (filtered.length === 0 && filter !== "") {
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5; color: white;">No se encontró nada para "${filter}"...</div>`;
+        return;
+    }
+
+    filtered.forEach(emoji => {
+        const div = document.createElement('div');
+        div.className = 'emoji-item';
+        div.textContent = emoji.char;
+        div.onclick = () => addEmojiToComposer(emoji.char);
+        grid.appendChild(div);
+    });
+}
+
+// ==========================================
+// 5. FUNCIONES DE NAVEGACIÓN (Globales)
+// ==========================================
+
+window.filterCategory = function(cat) {
+    const fullLibrary = document.getElementById('fullLibrary');
+    if (fullLibrary) fullLibrary.classList.add('hidden');
+
+    if (searchInput) searchInput.value = "";
+
+    const realCat = categoryMap[cat] || cat;
+    renderEmojis("", realCat);
+};
+
+window.toggleLibrary = function() {
+    const lib = document.getElementById('fullLibrary');
+    if (lib) lib.classList.toggle('hidden');
+};
+
+function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 2000);
+}
+
+// ==========================================
+// 6. ACCIONES Y LISTENERS
+// ==========================================
+
 btnCopyAll.onclick = () => {
     if (composer.value.length > 0) {
         navigator.clipboard.writeText(composer.value).then(() => {
@@ -682,56 +804,20 @@ btnCopyAll.onclick = () => {
 btnClear.onclick = () => {
     composer.value = "";
     updateCounter();
-    if (typeof updateFontResults === 'function') updateFontResults();
+    updateFontResults();
     composer.focus();
 };
 
-// 5. RENDERIZADO Y BÚSQUEDA
-function renderEmojis(filter = "", category = "todos") {
-    if (!grid) return;
-    grid.innerHTML = "";
-    
-    const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const searchFilter = normalize(filter.toLowerCase());
-
-    const filtered = emojiData.filter(item => {
-        const itemTags = normalize(item.tags.toLowerCase());
-        const matchesSearch = itemTags.includes(searchFilter);
-        if (filter !== "") return matchesSearch;
-        const matchesCat = (category === "todos") ? item.cat === "fuego" : item.cat === category;
-        return matchesCat;
-    });
-
-    filtered.forEach(emoji => {
-        const div = document.createElement('div');
-        div.className = 'emoji-item';
-        div.textContent = emoji.char;
-        div.onclick = () => addEmojiToComposer(emoji.char);
-        grid.appendChild(div);
-    });
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => renderEmojis(e.target.value));
 }
 
-// 6. FUNCIONES DE NAVEGACIÓN (Globales para el HTML)
-window.filterCategory = function(cat) {
-    const fullLibrary = document.getElementById('fullLibrary');
-    if (fullLibrary) fullLibrary.classList.add('hidden');
-    renderEmojis("", cat);
-};
-
-window.toggleLibrary = function() {
-    const lib = document.getElementById('fullLibrary');
-    if (lib) lib.classList.toggle('hidden');
-};
-
-function showToast(message) {
-    toast.textContent = message;
-    toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 2000);
+if (composer) {
+    composer.addEventListener('input', () => {
+        updateCounter();
+        updateFontResults();
+    });
 }
-
-// 7. LISTENERS
-searchInput.addEventListener('input', (e) => renderEmojis(e.target.value));
-composer.addEventListener('input', updateCounter);
 
 document.addEventListener('DOMContentLoaded', () => {
     renderEmojis("", "fuego");
