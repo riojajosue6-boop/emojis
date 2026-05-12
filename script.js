@@ -663,9 +663,15 @@ function renderEmojis(filter = "", category = "fuego") {
 }
 
 // --- Navegación ---
-window.filterCategory = (cat) => {
+window.filterCategory = (cat, event) => {
+    // Evita cualquier comportamiento por defecto del navegador
+    if(event) event.preventDefault(); 
+    
     document.querySelectorAll('.category-nav button').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    
+    // Si el evento existe, marcamos el botón como activo
+    if(event) event.currentTarget.classList.add('active');
+    
     renderEmojis("", cat);
 };
 
