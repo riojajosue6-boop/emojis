@@ -14,7 +14,7 @@
             <h1>EmojiExpress</h1>
             <p>Editor de Publicaciones Profesional</p>
         </header>
-
+ 
         <main class="main-card">
             <div class="card-header">
                 <span>Crear publicación</span>
@@ -57,19 +57,13 @@
                 <button onclick="filterCategory('ventas')">💰 Ventas</button>
                 <button onclick="filterCategory('emociones')">😊 Emociones</button>
                 <button onclick="filterCategory('herramientas')">🛠️ Herramientas</button>
-                <button onclick="toggleLibrary()" class="btn-more">📂 Más</button>
+                <button onclick="filterCategory('animales')">🐾 Animales</button>
+                <button onclick="filterCategory('comida')">🍔 Comida</button>
+                <button onclick="filterCategory('viajes')">✈️ Viajes</button>
+                <button onclick="filterCategory('banderas')">🏁 Banderas</button>
+                <button onclick="filterCategory('simbolos')">🔣 Símbolos</button>
             </nav>
-
-            <div id="fullLibrary" class="hidden">
-                <div class="library-grid">
-                    <button onclick="filterCategory('animales')">🐾 Animales</button>
-                    <button onclick="filterCategory('comida')">🍔 Comida</button>
-                    <button onclick="filterCategory('viajes')">✈️ Viajes</button>
-                    <button onclick="filterCategory('banderas')">🏁 Banderas</button>
-                    <button onclick="filterCategory('simbolos')">🔣 Símbolos</button>
-                </div>
-            </div>
-
+            
             <div id="emojiGrid" class="emoji-grid-compact">
                 </div>
         </section>
