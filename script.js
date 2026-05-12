@@ -615,8 +615,13 @@ function updateCounter() {
 function addEmoji(char) {
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
+    
+    // Inserta el emoji
     composer.setRangeText(char, start, end, 'end');
-    composer.focus();
+    
+    // IMPORTANTE: Mantiene el foco en el editor automáticamente
+    composer.focus(); 
+    
     updateCounter();
 }
 
