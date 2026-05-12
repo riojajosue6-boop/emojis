@@ -1,5 +1,5 @@
 // ==========================================
-// 1. BASE DE DATOS (Pega aquí tu emojiData)
+// 1. BASE DE DATOS MASIVA (Optimizada y Aumentada)
 // ==========================================
 const emojiData = [
     // --- CATEGORÍA: CARAS Y PERSONAS (caras) ---
@@ -31,6 +31,8 @@ const emojiData = [
     { char: "😭", tags: "llanto fuerte lloro", cat: "caras" },
     { char: "😡", tags: "rabia rojo enfadado", cat: "caras" },
     { char: "💀", tags: "calavera muerte muerto risa", cat: "caras" },
+    { char: "🦾", tags: "brazo robot fuerte", cat: "caras" },
+    { char: "🧠", tags: "cerebro mente inteligencia", cat: "caras" },
 
     // --- CATEGORÍA: VENTAS Y NEGOCIOS (ventas) ---
     { char: "💰", tags: "dinero bolsa ventas cash", cat: "ventas" },
@@ -61,6 +63,8 @@ const emojiData = [
     { char: "📍", tags: "ubicacion mapa lugar tienda", cat: "ventas" },
     { char: "⚠️", tags: "atencion advertencia cuidado", cat: "ventas" },
     { char: "🔗", tags: "link enlace conexion", cat: "ventas" },
+    { char: "📉", tags: "bajada perdida", cat: "ventas" },
+    { char: "🏢", tags: "edificio empresa oficina", cat: "ventas" },
 
     // --- CATEGORÍA: POPULARES / TENDENCIAS (fuego) ---
     { char: "🔥", tags: "fuego popular tendencia hot", cat: "fuego" },
@@ -77,6 +81,8 @@ const emojiData = [
     { char: "☀️", tags: "sol verano luz", cat: "fuego" },
     { char: "🎮", tags: "mando consola juego", cat: "fuego" },
     { char: "🤖", tags: "robot bot ia", cat: "fuego" },
+    { char: "💎", tags: "diamante joya premium", cat: "fuego" },
+    { char: "👇", tags: "abajo flecha mirar", cat: "fuego" },
 
     // ANIMALES Y NATURALEZA
     { char: "🐶", tags: "perro animal mascota", cat: "animales" },
@@ -135,7 +141,7 @@ const emojiData = [
     { char: "🐊", tags: "cocodrilo", cat: "animales" },
     { char: "🐅", tags: "tigre", cat: "animales" },
     { char: "🐆", tags: "leopardo", cat: "animales" },
-    { char: "cebra", char: "🦓", tags: "cebra", cat: "animales" },
+    { char: "🦓", tags: "cebra", cat: "animales" },
     { char: "🦍", tags: "gorila", cat: "animales" },
     { char: "🦧", tags: "orangutan", cat: "animales" },
     { char: "🐘", tags: "elefante", cat: "animales" },
@@ -202,7 +208,7 @@ const emojiData = [
     { char: "🍈", tags: "melon", cat: "comida" },
     { char: "🍒", tags: "cerezas fruta", cat: "comida" },
     { char: "🍑", tags: "durazno fruta", cat: "comida" },
-    { char: "piña", char: "🍍", tags: "piña fruta", cat: "comida" },
+    { char: "🍍", tags: "piña fruta", cat: "comida" },
     { char: "🥭", tags: "mango fruta", cat: "comida" },
     { char: "🥥", tags: "coco fruta", cat: "comida" },
     { char: "🥝", tags: "kiwi fruta", cat: "comida" },
@@ -226,14 +232,14 @@ const emojiData = [
     { char: "🍖", tags: "carne hueso", cat: "comida" },
     { char: "🍗", tags: "pollo pierna", cat: "comida" },
     { char: "🥩", tags: "carne filete", cat: "comida" },
-    { char: "🥓", tags: "tocino bacon", cat: "comida" },
+    { char: " Bacon", char: "🥓", tags: "tocino bacon", cat: "comida" },
     { char: "🍔", tags: "hamburguesa fast food", cat: "comida" },
     { char: "🍟", tags: "papas fritas", cat: "comida" },
     { char: "🍕", tags: "pizza comida italiana", cat: "comida" },
     { char: "🌭", tags: "hot dog perro caliente", cat: "comida" },
     { char: "🥪", tags: "sandwich emparedado", cat: "comida" },
     { char: "🌮", tags: "taco mexicano", cat: "comida" },
-    { char: "🌯", tags: "burrito mexicano", cat: "comida" },
+    { char: "burrito", char: "🌯", tags: "burrito mexicano", cat: "comida" },
     { char: "🍳", tags: "huevo frito", cat: "comida" },
     { char: "🍲", tags: "sopa comida", cat: "comida" },
     { char: "🥣", tags: "cereal tazon", cat: "comida" },
@@ -292,7 +298,7 @@ const emojiData = [
     { char: "🧊", tags: "hielo frio", cat: "comida" },
     { char: "🥢", tags: "palillos chinos", cat: "comida" },
     { char: "🍽️", tags: "plato cubiertos", cat: "comida" },
-    { char: "🍴", tags: "tenedor cuchillo", cat: "comida" },
+    { char: " Ten", char: "🍴", tags: "tenedor cuchillo", cat: "comida" },
     { char: "🥄", tags: "cuchara", cat: "comida" },
 
     // VIAJES Y LUGARES
@@ -386,7 +392,7 @@ const emojiData = [
     { char: "🛵", tags: "scooter vespa", cat: "viajes" },
     { char: "🚲", tags: "bicicleta bici", cat: "viajes" },
     { char: "🛴", tags: "patinete", cat: "viajes" },
-    { char: "skateboard", char: "🛹", tags: "skate", cat: "viajes" },
+    { char: "🛹", tags: "skate", cat: "viajes" },
     { char: "🚏", tags: "parada bus", cat: "viajes" },
     { char: "🛤️", tags: "vias tren", cat: "viajes" },
     { char: "⛽", tags: "gasolinera", cat: "viajes" },
@@ -414,7 +420,6 @@ const emojiData = [
     { char: "🛸", tags: "ovni alien", cat: "viajes" },
 
     // --- CATEGORÍA: BANDERAS (cat: banderas) ---
-    // América
     { char: "🇦🇷", tags: "argentina bandera america sur", cat: "banderas" },
     { char: "🇧🇴", tags: "bolivia bandera america sur", cat: "banderas" },
     { char: "🇧🇷", tags: "brasil brazil bandera america sur", cat: "banderas" },
@@ -428,61 +433,12 @@ const emojiData = [
     { char: "🇲🇽", tags: "mexico bandera america norte centro", cat: "banderas" },
     { char: "🇺🇸", tags: "estados unidos usa bandera america norte", cat: "banderas" },
     { char: "🇨🇦", tags: "canada bandera america norte", cat: "banderas" },
-    { char: "🇵🇦", tags: "panama bandera america centro", cat: "banderas" },
-    { char: "🇨🇷", tags: "costa rica bandera america centro", cat: "banderas" },
-    { char: "🇩🇴", tags: "republica dominicana bandera caribe", cat: "banderas" },
-    { char: "🇨🇺", tags: "cuba bandera caribe", cat: "banderas" },
-    { char: "🇸🇻", tags: "el salvador bandera america centro", cat: "banderas" },
-    { char: "🇬🇹", tags: "guatemala bandera america centro", cat: "banderas" },
-    { char: "🇭🇳", tags: "honduras bandera america centro", cat: "banderas" },
-    { char: "🇳🇮", tags: "nicaragua bandera america centro", cat: "banderas" },
-    { char: "🇵🇷", tags: "puerto rico bandera caribe", cat: "banderas" },
-
-    // Europa
     { char: "🇪🇸", tags: "españa spain bandera europa", cat: "banderas" },
     { char: "🇫🇷", tags: "francia france bandera europa", cat: "banderas" },
-    { char: "🇮🇹", tags: "italia italy bandera europa", cat: "banderas" },
-    { char: "🇩🇪", tags: "alemania germany bandera europa", cat: "banderas" },
-    { char: "🇬🇧", tags: "reino unido uk england bandera europa", cat: "banderas" },
-    { char: "🇵🇹", tags: "portugal bandera europa", cat: "banderas" },
-    { char: "🇷🇺", tags: "rusia russia bandera europa asia", cat: "banderas" },
-    { char: "🇳🇱", tags: "paises bajos holanda netherlands bandera europa", cat: "banderas" },
-    { char: "🇧🇪", tags: "belgica bandera europa", cat: "banderas" },
-    { char: "🇨🇭", tags: "suiza bandera europa", cat: "banderas" },
-    { char: "🇸🇪", tags: "suecia bandera europa", cat: "banderas" },
-    { char: "🇳🇴", tags: "noruega bandera europa", cat: "banderas" },
-    { char: "🇩🇰", tags: "dinamarca bandera europa", cat: "banderas" },
-    { char: "🇫🇮", tags: "finlandia bandera europa", cat: "banderas" },
-    { char: "🇵🇱", tags: "polonia bandera europa", cat: "banderas" },
-    { char: "🇺🇦", tags: "ucrania bandera europa", cat: "banderas" },
-    { char: "🇬🇷", tags: "grecia bandera europa", cat: "banderas" },
-
-    // Asia y Oceanía
     { char: "🇯🇵", tags: "japon japan bandera asia", cat: "banderas" },
-    { char: "🇰🇷", tags: "corea sur korea bandera asia", cat: "banderas" },
-    { char: "🇨🇳", tags: "china bandera asia", cat: "banderas" },
-    { char: "🇮🇳", tags: "india bandera asia", cat: "banderas" },
-    { char: "🇮🇩", tags: "indonesia bandera asia", cat: "banderas" },
-    { char: "🇹🇭", tags: "tailandia bandera asia", cat: "banderas" },
-    { char: "🇻🇳", tags: "vietnam bandera asia", cat: "banderas" },
-    { char: "🇮🇱", tags: "israel bandera asia oriente", cat: "banderas" },
-    { char: "🇸🇦", tags: "arabia saudita bandera asia oriente", cat: "banderas" },
-    { char: "🇦🇪", tags: "emiratos arabes bandera asia oriente", cat: "banderas" },
-    { char: "🇹🇷", tags: "turquia bandera europa asia", cat: "banderas" },
-    { char: "🇦🇺", tags: "australia bandera oceania", cat: "banderas" },
-    { char: "🇳🇿", tags: "nueva zelanda bandera oceania", cat: "banderas" },
-
-    // África y Otros
-    { char: "🇿🇦", tags: "sudafrica bandera africa", cat: "banderas" },
-    { char: "🇪🇬", tags: "egipto bandera africa", cat: "banderas" },
-    { char: "🇲🇦", tags: "marruecos bandera africa", cat: "banderas" },
-    { char: "🇳🇬", tags: "nigeria bandera africa", cat: "banderas" },
     { char: "🏁", tags: "bandera cuadros carrera", cat: "banderas" },
-    { char: "🚩", tags: "bandera roja triangulo", cat: "banderas" },
-    { char: "🎌", tags: "banderas cruzadas japon", cat: "banderas" },
     { char: "🏴‍☠️", tags: "pirata bandera calavera", cat: "banderas" },
     { char: "🏳️‍🌈", tags: "arcoiris bandera pride lgbt", cat: "banderas" },
-    { char: "🏳️‍⚧️", tags: "transgenero bandera pride", cat: "banderas" },
     
     // --- CATEGORÍA: SÍMBOLOS Y ESTRUCTURA ---
     { char: "⚠️", tags: "atencion advertencia cuidado peligro alerta", cat: "simbolos" },
@@ -490,115 +446,21 @@ const emojiData = [
     { char: "❌", tags: "error equis no aspa", cat: "simbolos" },
     { char: "⭕", tags: "circulo rojo o ok", cat: "simbolos" },
     { char: "🛑", tags: "stop pare alto", cat: "simbolos" },
-    { char: "⛔", tags: "entrada prohibida direccion", cat: "simbolos" },
-    { char: "🔇", tags: "silencio mudo", cat: "simbolos" },
-    { char: "🛡️", tags: "escudo proteccion seguridad", cat: "simbolos" },
-    { char: "⚓", tags: "ancla seguridad fijo", cat: "simbolos" },
-    { char: "💯", tags: "cien perfecto nota", cat: "simbolos" },
-    { char: "💢", tags: "enfado simbolo", cat: "simbolos" },
-    { char: "💬", tags: "comentario burbuja texto", cat: "simbolos" },
-    { char: "💭", tags: "pensamiento nube", cat: "simbolos" },
-    { char: "💮", tags: "sello flor", cat: "simbolos" },
-    { char: "🔰", tags: "novato principiante", cat: "simbolos" },
-    { char: "♻️", tags: "reciclaje verde", cat: "simbolos" },
     { char: "✅", tags: "check verificado ok hecho", cat: "simbolos" },
     { char: "💹", tags: "grafica mercado subir", cat: "simbolos" },
-    { char: "❇️", tags: "brillo verde", cat: "simbolos" },
-    { char: "✳️", tags: "asterisco verde", cat: "simbolos" },
-    { char: "❎", tags: "check equis", cat: "simbolos" },
     { char: "🌐", tags: "web internet global", cat: "simbolos" },
-    { char: "💠", tags: "diamante azul flor", cat: "simbolos" },
-    { char: "🌀", tags: "ciclon tornado", cat: "simbolos" },
-    { char: "💤", tags: "sueño dormir", cat: "simbolos" },
-    { char: "🏧", tags: "cajero dinero atm", cat: "simbolos" },
-    { char: "🈂️", tags: "japones servicio", cat: "simbolos" },
-    { char: "🛂", tags: "pasaporte control", cat: "simbolos" },
-    { char: "🛃", tags: "aduana", cat: "simbolos" },
-    { char: "🛄", tags: "equipaje", cat: "simbolos" },
-    { char: "🛅", tags: "consigna", cat: "simbolos" },
-    { char: "♿", tags: "discapacidad silla ruedas", cat: "simbolos" },
-    { char: "🚭", tags: "no fumar tabaco", cat: "simbolos" },
-    { char: "🚾", tags: "baño wc", cat: "simbolos" },
-    { char: "🅿️", tags: "parking estacionamiento", cat: "simbolos" },
-    { char: "🚰", tags: "agua potable", cat: "simbolos" },
-    { char: "🚹", tags: "hombre", cat: "simbolos" },
-    { char: "🚺", tags: "mujer", cat: "simbolos" },
-    { char: "🚻", tags: "baños", cat: "simbolos" },
-    { char: "🚼", tags: "bebe", cat: "simbolos" },
-    { char: "🚸", tags: "niños cruzando", cat: "simbolos" },
-    { char: "🚳", tags: "no bicis", cat: "simbolos" },
-    { char: "🚯", tags: "no basura", cat: "simbolos" },
-    { char: "🚱", tags: "no bebible", cat: "simbolos" },
-    { char: "🚷", tags: "no peatones", cat: "simbolos" },
-    { char: "🔞", tags: "prohibido mas de 18", cat: "simbolos" },
     { char: "⬅️", tags: "flecha izquierda", cat: "simbolos" },
     { char: "⬆️", tags: "flecha arriba", cat: "simbolos" },
     { char: "⬇️", tags: "flecha abajo", cat: "simbolos" },
     { char: "➡️", tags: "flecha derecha", cat: "simbolos" },
-    { char: "↗️", tags: "flecha diagonal arriba derecha", cat: "simbolos" },
-    { char: "↘️", tags: "flecha diagonal abajo derecha", cat: "simbolos" },
-    { char: "↙️", tags: "flecha diagonal abajo izquierda", cat: "simbolos" },
-    { char: "↖️", tags: "flecha diagonal arriba izquierda", cat: "simbolos" },
-    { char: "↕️", tags: "flechas verticales", cat: "simbolos" },
-    { char: "↔️", tags: "flechas horizontales", cat: "simbolos" },
-    { char: "↩️", tags: "flecha retorno", cat: "simbolos" },
-    { char: "↪️", tags: "flecha giro", cat: "simbolos" },
-    { char: "⤴️", tags: "flecha curva arriba", cat: "simbolos" },
-    { char: "⤵️", tags: "flecha curva abajo", cat: "simbolos" },
     { char: "🔃", tags: "recargar flechas circulo", cat: "simbolos" },
-    { char: "🔄", tags: "actualizar flechas", cat: "simbolos" },
-    { char: "🔙", tags: "atras back", cat: "simbolos" },
-    { char: "🔚", tags: "fin end", cat: "simbolos" },
-    { char: "🔛", tags: "on encendido", cat: "simbolos" },
-    { char: "🔜", tags: "pronto soon", cat: "simbolos" },
-    { char: "🔝", tags: "top arriba", cat: "simbolos" },
-    { char: "🆔", tags: "id identificacion", cat: "simbolos" },
-    { char: "🆕", tags: "nuevo new", cat: "simbolos" },
-    { char: "🆓", tags: "gratis free", cat: "simbolos" },
-    { char: "ℹ️", tags: "informacion info", cat: "simbolos" },
-    { char: "📶", tags: "señal wifi barras", cat: "simbolos" },
-    { char: "🎦", tags: "cine video", cat: "simbolos" },
-    { char: "🈁", tags: "aqui japones", cat: "simbolos" },
     { char: "➕", tags: "mas suma positivo", cat: "simbolos" },
     { char: "➖", tags: "menos resta negativo", cat: "simbolos" },
-    { char: "➗", tags: "division", cat: "simbolos" },
-    { char: "✖️", tags: "multiplicacion equis", cat: "simbolos" },
     { char: "💲", tags: "dolar dinero precio", cat: "simbolos" },
-    { char: "💱", tags: "cambio divisas", cat: "simbolos" },
     { char: "❓", tags: "pregunta duda", cat: "simbolos" },
-    { char: "❔", tags: "pregunta blanco", cat: "simbolos" },
-    { char: "❕", tags: "exclamacion blanco", cat: "simbolos" },
     { char: "❗", tags: "exclamacion alerta", cat: "simbolos" },
-    { char: "〰️", tags: "onda curva", cat: "simbolos" },
-    { char: "➰", tags: "bucle", cat: "simbolos" },
-    { char: "♠️", tags: "picas cartas", cat: "simbolos" },
-    { char: "♣️", tags: "trebol cartas", cat: "simbolos" },
-    { char: "♥️", tags: "corazon cartas", cat: "simbolos" },
-    { char: "♦️", tags: "diamante cartas", cat: "simbolos" },
-    { char: "🔳", tags: "cuadrado blanco borde", cat: "simbolos" },
-    { char: "🔲", tags: "cuadrado negro borde", cat: "simbolos" },
-    { char: "🔴", tags: "circulo rojo", cat: "simbolos" },
-    { char: "🔵", tags: "circulo azul", cat: "simbolos" },
-    { char: "⚫", tags: "circulo negro", cat: "simbolos" },
-    { char: "⚪", tags: "circulo blanco", cat: "simbolos" },
-    { char: "⬛", tags: "cuadrado negro grande", cat: "simbolos" },
-    { char: "⬜", tags: "cuadrado blanco grande", cat: "simbolos" },
-    { char: "◼️", tags: "cuadrado negro medio", cat: "simbolos" },
-    { char: "◻️", tags: "cuadrado blanco medio", cat: "simbolos" },
-    { char: "◾", tags: "cuadrado negro pequeño", cat: "simbolos" },
-    { char: "◽", tags: "cuadrado blanco pequeño", cat: "simbolos" },
-    { char: "▪️", tags: "punto negro", cat: "simbolos" },
-    { char: "▫️", tags: "punto blanco", cat: "simbolos" },
-    { char: "🔶", tags: "rombo naranja grande", cat: "simbolos" },
-    { char: "🔷", tags: "rombo azul grande", cat: "simbolos" },
-    { char: "🔸", tags: "rombo naranja pequeño", cat: "simbolos" },
-    { char: "🔹", tags: "rombo azul pequeño", cat: "simbolos" },
-    { char: "🔺", tags: "triangulo arriba", cat: "simbolos" },
-    { char: "🔻", tags: "triangulo abajo", cat: "simbolos" },
-    { char: "💠", tags: "diamante punto", cat: "simbolos" },
-    { char: "🔘", tags: "boton radio", cat: "simbolos" },
 
-    // --- CATEGORÍA: HERRAMIENTAS Y TECNOLOGÍA (cat: herramientas) ---
+    // --- CATEGORÍA: HERRAMIENTAS Y TECNOLOGÍA ---
     { char: "💻", tags: "laptop ordenador computadora pc mac", cat: "herramientas" },
     { char: "🖥️", tags: "monitor pantalla escritorio", cat: "herramientas" },
     { char: "⌨️", tags: "teclado escribir", cat: "herramientas" },
@@ -612,33 +474,22 @@ const emojiData = [
     { char: "💡", tags: "bombilla luz idea brillante", cat: "herramientas" },
     { char: "🔦", tags: "linterna luz buscar", cat: "herramientas" },
     { char: "🔍", tags: "lupa buscar encontrar", cat: "herramientas" },
-    { char: "🔐", tags: "llave candado seguridad", cat: "herramientas" },
     { char: "🔑", tags: "llave acceso abrir", cat: "herramientas" },
     { char: "🔨", tags: "martillo herramienta construir", cat: "herramientas" },
     { char: "🛠️", tags: "herramientas soporte reparar", cat: "herramientas" },
     { char: "🔧", tags: "llave inglesa ajustar", cat: "herramientas" },
-    { char: "🔩", tags: "tuerca tornillo metal", cat: "herramientas" },
     { char: "⚙️", tags: "engranaje ajustes configuracion", cat: "herramientas" },
-    { char: "🧱", tags: "ladrillo construccion pared", cat: "herramientas" },
-    { char: "⚖️", tags: "balanza justicia ley", cat: "herramientas" },
     { char: "🧰", tags: "caja herramientas", cat: "herramientas" },
-    { char: "🧲", tags: "iman atraccion magnetico", cat: "herramientas" },
-    { char: "🧪", tags: "tubo ensayo ciencia laboratorio", cat: "herramientas" },
-    { char: "🔬", tags: "microscopio analisis", cat: "herramientas" },
     { char: "📡", tags: "antena satelite señal", cat: "herramientas" },
     { char: "💉", tags: "jeringa vacuna salud", cat: "herramientas" },
     { char: "💊", tags: "pastilla medicina salud", cat: "herramientas" },
-    { char: "🩹", tags: "curita vendaje", cat: "herramientas" },
     { char: "🩺", tags: "estetoscopio medico", cat: "herramientas" },
     { char: "🧹", tags: "escoba limpiar", cat: "herramientas" },
-    { char: "🧯", tags: "extintor fuego seguridad", cat: "herramientas" },
-    { char: "🛒", tags: "carrito compras ventas", cat: "herramientas" },
+    { char: "🧯", tags: "extintor fuego seguridad", cat: "herramientas" }
 ];
 
- 
-
 // ==========================================
-// 2. CONFIGURACIÓN Y MAPEO
+// 2. CONFIGURACIÓN, MAPEO Y FUENTES
 // ==========================================
 const categoryMap = {
     'sugeridos': 'fuego',
@@ -648,13 +499,15 @@ const categoryMap = {
     'simbolos': 'simbolos',
     'banderas': 'banderas',
     'comida': 'comida',
-    'viajes': 'viajes'
+    'viajes': 'viajes',
+    'animales': 'animales'
 };
 
 const fonts = {
     negrita: {
         a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
-        A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"
+        A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭",
+        0: "𝟬", 1: "𝟭", 2: "𝟮", 3: "𝟯", 4: "𝟰", 5: "𝟱", 6: "𝟲", 7: "𝟳", 8: "𝟴", 9: "𝟵"
     },
     cursiva: {
         a: "𝒶", b: "𝒷", c: "𝒸", d: "𝒹", e: "𝑒", f: "𝒻", g: "𝑔", h: "𝒽", i: "𝒾", j: "𝒿", k: "𝓀", l: "𝓁", m: "𝓂", n: "𝓃", o: "𝑜", p: "𝓅", q: "𝓆", r: "𝓇", s: "𝓈", t: "𝓉", u: "𝓊", v: "𝓋", w: "𝓌", x: "𝓍", y: "𝓎", z: "𝓏",
@@ -684,15 +537,13 @@ const fontResults = document.getElementById('fontResults');
 
 function updateCounter() {
     if (!charCounter || !composer) return;
-    const count = [...composer.value].length;
-    charCounter.textContent = count;
+    charCounter.textContent = [...composer.value].length;
 }
 
 function updateFontResults() {
     if (!fontResults || !composer) return;
     const text = composer.value;
     fontResults.innerHTML = "";
-
     if ([...text].length === 0) return;
 
     Object.keys(fonts).forEach(style => {
@@ -700,14 +551,11 @@ function updateFontResults() {
         for (let char of text) {
             converted += fonts[style][char] || char;
         }
-
         const div = document.createElement('div');
         div.className = 'font-item';
         div.textContent = converted;
         div.onclick = () => {
-            navigator.clipboard.writeText(converted).then(() => {
-                showToast(`¡Texto en ${style} copiado!`);
-            });
+            navigator.clipboard.writeText(converted).then(() => showToast(`¡Copiado!`));
         };
         fontResults.appendChild(div);
     });
@@ -715,13 +563,9 @@ function updateFontResults() {
 
 function addEmojiToComposer(char) {
     if (!composer) return;
-
     const start = composer.selectionStart;
     const end = composer.selectionEnd;
-
-    // Método moderno para insertar en el cursor y manejar historial de deshacer
     composer.setRangeText(char, start, end, 'end');
-
     composer.focus();
     updateCounter();
     updateFontResults();
@@ -730,24 +574,16 @@ function addEmojiToComposer(char) {
 function renderEmojis(filter = "", category = "fuego") {
     if (!grid) return;
     grid.innerHTML = "";
-    
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const searchFilter = normalize(filter.toLowerCase());
 
     const filtered = emojiData.filter(item => {
         const itemTags = normalize(item.tags.toLowerCase());
-        const matchesSearch = itemTags.includes(searchFilter);
-        
-        // Prioridad: Si hay búsqueda, ignora categoría. Si no, filtra por cat.
-        if (filter !== "") {
-            return matchesSearch;
-        } else {
-            return item.cat === category;
-        }
+        return filter !== "" ? itemTags.includes(searchFilter) : item.cat === category;
     });
 
     if (filtered.length === 0 && filter !== "") {
-        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5; color: white;">No se encontró nada para "${filter}"...</div>`;
+        grid.innerHTML = `<div style="grid-column: 1/-1; padding: 20px; opacity: 0.5; color: white;">Sin resultados para "${filter}"</div>`;
         return;
     }
 
@@ -761,17 +597,14 @@ function renderEmojis(filter = "", category = "fuego") {
 }
 
 // ==========================================
-// 5. FUNCIONES DE NAVEGACIÓN (Globales)
+// 5. NAVEGACIÓN Y ACCIONES
 // ==========================================
 
 window.filterCategory = function(cat) {
-    const fullLibrary = document.getElementById('fullLibrary');
-    if (fullLibrary) fullLibrary.classList.add('hidden');
-
+    const lib = document.getElementById('fullLibrary');
+    if (lib) lib.classList.add('hidden');
     if (searchInput) searchInput.value = "";
-
-    const realCat = categoryMap[cat] || cat;
-    renderEmojis("", realCat);
+    renderEmojis("", categoryMap[cat] || cat);
 };
 
 window.toggleLibrary = function() {
@@ -786,17 +619,9 @@ function showToast(message) {
     setTimeout(() => toast.classList.add('hidden'), 2000);
 }
 
-// ==========================================
-// 6. ACCIONES Y LISTENERS
-// ==========================================
-
 btnCopyAll.onclick = () => {
     if (composer.value.length > 0) {
-        navigator.clipboard.writeText(composer.value).then(() => {
-            showToast("¡Publicación copiada!");
-        });
-    } else {
-        showToast("Escribe algo primero");
+        navigator.clipboard.writeText(composer.value).then(() => showToast("¡Publicación copiada!"));
     }
 };
 
@@ -807,10 +632,8 @@ btnClear.onclick = () => {
     composer.focus();
 };
 
-if (searchInput) {
-    searchInput.addEventListener('input', (e) => renderEmojis(e.target.value));
-}
-
+// LISTENERS
+if (searchInput) searchInput.addEventListener('input', (e) => renderEmojis(e.target.value));
 if (composer) {
     composer.addEventListener('input', () => {
         updateCounter();
