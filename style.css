@@ -259,4 +259,22 @@ header p {
     bottom: 10px; /* Lo movemos a la esquina inferior derecha */
     top: auto;
 }
+#emojiComposer {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    padding: 15px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #333;
+    width: 100%;
+    min-height: 150px;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
 
+#emojiComposer:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
