@@ -585,8 +585,11 @@ const btnBold = document.getElementById('btnBold');
 const btnItalic = document.getElementById('btnItalic');
 const toast = document.getElementById('toast');
 
+// VARIABLE CRÍTICA: Guarda la selección exacta
+let lastRange = null;
+
 // ==========================================
-// 2. DICCIONARIO DE FUENTES (Completo)
+// 2. DICCIONARIO DE FUENTES (Mantenido)
 // ==========================================
 const fonts = {
     bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"Ｖ",W:"Ｗ",X:"𝗫",Y:"𝗬",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
@@ -604,8 +607,28 @@ function updateCounter() {
     charCounter.textContent = `${[...text].length} caracteres`;
 }
 
+// Función para guardar la posición exacta del cursor/selección
+const saveRange = () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+        lastRange = selection.getRangeAt(0);
+    }
+};
+
+// Guardar siempre que el usuario interactúe
+composer.addEventListener('mouseup', saveRange);
+composer.addEventListener('keyup', saveRange);
+composer.addEventListener('focus', saveRange);
+
 function transformSelection(style) {
     const selection = window.getSelection();
+    
+    // Si perdimos la selección por el menú, la restauramos a la fuerza
+    if (lastRange) {
+        selection.removeAllRanges();
+        selection.addRange(lastRange);
+    }
+
     const selectedText = selection.toString();
 
     if (!selectedText || selectedText.length === 0) {
@@ -618,30 +641,54 @@ function transformSelection(style) {
         transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
     }
 
-    // Este comando es el estándar para elementos contenteditable
+    // Insertar el texto transformado
     document.execCommand("insertText", false, transformed);
+    
+    // Actualizar contador y guardar nueva posición
     updateCounter();
+    saveRange(); 
 }
 
 function addEmoji(char) {
     composer.focus();
+    // Restaurar posición si es necesario
+    const selection = window.getSelection();
+    if (lastRange) {
+        selection.removeAllRanges();
+        selection.addRange(lastRange);
+    }
     document.execCommand("insertText", false, char);
     updateCounter();
+    saveRange();
 }
 
 // ==========================================
-// 4. EVENTOS DE INTERFAZ
+// 4. EVENTOS DE INTERFAZ (Con Retraso Táctico)
 // ==========================================
 
 fontSelector.onchange = function() {
-    if (this.value !== "normal") {
-        transformSelection(this.value);
-        this.value = "normal"; // Reset del menú
+    const estilo = this.value;
+    if (estilo !== "normal") {
+        // Damos 100ms para que el foco regrese al div tras cerrar el menú
+        setTimeout(() => {
+            composer.focus();
+            transformSelection(estilo);
+            this.value = "normal";
+        }, 100);
     }
 };
 
-btnBold.onclick = (e) => { e.preventDefault(); transformSelection('bold'); };
-btnItalic.onclick = (e) => { e.preventDefault(); transformSelection('italic'); };
+btnBold.onclick = (e) => { 
+    e.preventDefault(); 
+    composer.focus();
+    setTimeout(() => transformSelection('bold'), 50);
+};
+
+btnItalic.onclick = (e) => { 
+    e.preventDefault(); 
+    composer.focus();
+    setTimeout(() => transformSelection('italic'), 50);
+};
 
 document.getElementById('btnCopyAll').onclick = () => {
     const text = composer.innerText;
@@ -656,6 +703,7 @@ document.getElementById('btnClear').onclick = () => {
     composer.innerHTML = "";
     updateCounter();
     composer.focus();
+    lastRange = null;
 };
 
 // ==========================================
