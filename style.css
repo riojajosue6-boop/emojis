@@ -231,3 +231,23 @@ body {
 }
 
 .hidden { display: none; }
+
+#emojiComposer {
+    width: 100%;
+    min-height: 180px;
+    max-height: 300px; /* Permite que crezca un poco si hay mucho texto */
+    padding: 15px;
+    font-size: 1.1rem;
+    outline: none;
+    overflow-y: auto;
+    background: white;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Mantiene los saltos de línea */
+}
+
+/* Estilo para el placeholder en un div editable */
+#emojiComposer:empty:before {
+    content: attr(placeholder);
+    color: #65676b;
+    cursor: text;
+}
