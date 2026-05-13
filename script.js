@@ -577,79 +577,82 @@ const emojiData = [
 const composer = document.getElementById('emojiComposer');
 const charCounter = document.getElementById('charCounter');
 const fontSelector = document.getElementById('fontSelector');
+const btnBold = document.getElementById('btnBold');
+const btnItalic = document.getElementById('btnItalic');
 const grid = document.getElementById('emojiGrid');
+const searchInput = document.getElementById('searchInput');
 const toast = document.getElementById('toast');
 
-// 2. DICCIONARIO DE FUENTES (Mantenido)
+// MEMORIA DE CURSOR (La clave para los emojis y letras)
+let savedStart = 0;
+let savedEnd = 0;
+
+// 2. DICCIONARIO DE FUENTES (Completo)
 const fonts = {
-    bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"Ｖ",W:"𝗪",X:"𝗫",Y:"𝗬",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
+    bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"Ｋ",L:"𝗟",M:"𝗠",N:"Ｎ",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"Ｓ",T:"𝗧",U:"𝗨",V:"Ｖ",W:"Ｗ",X:"𝗫",Y:"Ｙ",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
     italic: { a:"𝒶",b:"𝒷",c:"𝒸",d:"𝒹",e:"𝑒",f:"𝒻",g:"𝑔",h:"𝒽",i:"𝒾",j:"𝒿",k:"𝓀",l:"𝓁",m:"𝓂",n:"𝓃",o:"𝑜",p:"𝓅",q:"𝓆",r:"𝓇",s:"𝓈",t:"𝓉",u:"𝓊",v:"𝓋",w:"𝓌",x:"𝓍",y:"𝓎",z:"𝏄", A:"𝒜",B:"𝐵",C:"𝒞",D:"𝒟",E:"𝐸",F:"𝐹",G:"𝒢",H:"𝐻",I:"𝐼",J:"𝒥",K:"𝒦",L:"𝐿",M:"𝑀",N:"𝒩",O:"𝒪",P:"𝒫",Q:"𝒬",R:"𝑅",S:"𝒮",T:"𝒯",U:"𝒰",V:"𝒱",W:"𝒲",X:"𝒳",Y:"𝒴",Z:"𝒵" },
-    monospace: { a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣", A:"𝙰",B:"𝙱",C:"𝙲",D:"Ｄ",E:"Ｅ",F:"Ｆ",G:"Ｇ",H:"Ｈ",I:"Ｉ",J:"Ｊ",K:"Ｋ",L:"Ｌ",M:"Ｍ",N:"Ｎ",O:"Ｏ",P:"Ｐ",Q:"𝚀",R:"Ｒ",S:"Ｓ",T:"Ｔ",U:"Ｕ",V:"Ｖ",W:"Ｗ",X:"Ｘ",Y:"Ｙ",Z:"𝚉" },
+    monospace: { a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣", A:"𝙰",B:"𝙱",C:"𝙲",D:"𝙳",E:"Ｅ",F:"Ｆ",G:"Ｇ",H:"Ｈ",I:"Ｉ",J:"Ｊ",K:"Ｋ",L:"Ｌ",M:"Ｍ",N:"Ｎ",O:"Ｏ",P:"Ｐ",Q:"𝚀",R:"Ｒ",S:"Ｓ",T:"Ｔ",U:"Ｕ",V:"Ｖ",W:"Ｗ",X:"Ｘ",Y:"Ｙ",Z:"𝚉" },
     script: { a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃", A:"𝓐",B:"𝓑",C:"𝓐",D:"𝓓",E:"𝓔",F:"𝓕",G:"𝓖",H:"𝓗",I:"𝓘",J:"𝓙",K:"𝓚",L:"尝",M:"𝓜",N:"𝓝",O:"𝓞",P:"𝓟",Q:"𝓠",R:"𝓡",S:"𝓢",T:"𝓣",U:"𝓤",V:"𝓥",W:"𝓦",X:"𝓧",Y:"𝓨",Z:"𝓩" }
 };
 
-// 3. FUNCIONES CORE (REDISEÑADAS)
+// 3. FUNCIONES DE APOYO
 
-function updateCounter() {
-    const text = composer.innerText || "";
-    charCounter.textContent = `${[...text].length} caracteres`;
-}
+const updateCounter = () => {
+    charCounter.textContent = `${[...composer.value].length} caracteres`;
+};
 
-// Transformar texto seleccionado
+// Guardar posición del cursor cada vez que el usuario hace algo
+const recordPos = () => {
+    savedStart = composer.selectionStart;
+    savedEnd = composer.selectionEnd;
+};
+
+composer.addEventListener('mouseup', recordPos);
+composer.addEventListener('keyup', recordPos);
+composer.addEventListener('focus', recordPos);
+
 function transformSelection(style) {
-    const selection = window.getSelection();
-    if (!selection.rangeCount || selection.toString().length === 0) {
+    const text = composer.value;
+    const selectedText = text.substring(savedStart, savedEnd);
+
+    if (savedStart === savedEnd || !selectedText) {
         showToast("Selecciona el texto primero");
         return;
     }
 
-    const range = selection.getRangeAt(0);
-    const selectedText = selection.toString();
-    
     let transformed = "";
     for (let char of selectedText) {
         transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
     }
 
-    // Usamos un método de inserción manual de nodo de texto
-    range.deleteContents();
-    const newNode = document.createTextNode(transformed);
-    range.insertNode(newNode);
-
-    // Mover el cursor al final del cambio
-    selection.removeAllRanges();
-    const newRange = document.createRange();
-    newRange.setStartAfter(newNode);
-    newRange.collapse(true);
-    selection.addRange(newRange);
-
+    // Insertar el texto transformado
+    composer.value = text.substring(0, savedStart) + transformed + text.substring(savedEnd);
+    
+    // Devolver el foco y resaltar lo nuevo
+    composer.focus();
+    composer.setSelectionRange(savedStart, savedStart + transformed.length);
+    recordPos();
     updateCounter();
 }
 
-// Insertar Emoji en la posición del cursor
 function addEmoji(char) {
-    composer.focus();
-    const selection = window.getSelection();
+    const text = composer.value;
     
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        range.deleteContents();
-        
-        const node = document.createTextNode(char);
-        range.insertNode(node);
-        
-        // Colocar cursor justo después del emoji
-        range.setStartAfter(node);
-        range.collapse(true);
-        selection.removeAllRanges();
-        selection.addRange(range);
-    } else {
-        composer.innerText += char;
-    }
+    // Insertamos el emoji exactamente donde estaba guardado el cursor
+    composer.value = text.substring(0, savedStart) + char + text.substring(savedEnd);
+    
+    // Movemos el cursor justo después del emoji
+    const newPos = savedStart + char.length;
+    composer.focus();
+    composer.setSelectionRange(newPos, newPos);
+    
+    // Actualizamos la memoria para el siguiente emoji
+    savedStart = savedEnd = newPos;
     updateCounter();
 }
 
 // 4. EVENTOS
+fontSelector.onmousedown = recordPos; // Captura la selección justo antes de abrir el menú
 fontSelector.onchange = function() {
     if (this.value !== "normal") {
         transformSelection(this.value);
@@ -657,35 +660,23 @@ fontSelector.onchange = function() {
     }
 };
 
-document.getElementById('btnBold').onclick = (e) => { 
-    e.preventDefault(); 
-    transformSelection('bold'); 
-};
-
-document.getElementById('btnItalic').onclick = (e) => { 
-    e.preventDefault(); 
-    transformSelection('italic'); 
-};
+btnBold.onclick = (e) => { e.preventDefault(); recordPos(); transformSelection('bold'); };
+btnItalic.onclick = (e) => { e.preventDefault(); recordPos(); transformSelection('italic'); };
 
 document.getElementById('btnCopyAll').onclick = () => {
-    const text = composer.innerText;
-    navigator.clipboard.writeText(text).then(() => showToast("¡Copiado!"));
+    composer.select();
+    document.execCommand('copy');
+    showToast("¡Copiado!");
 };
 
 document.getElementById('btnClear').onclick = () => {
-    composer.innerHTML = "";
+    composer.value = "";
+    savedStart = savedEnd = 0;
     updateCounter();
     composer.focus();
 };
 
-// 5. RENDERIZADO DE EMOJIS (Categorías y Búsqueda)
-window.filterCategory = (cat, event) => {
-    if (event) event.preventDefault();
-    document.querySelectorAll('.category-nav button').forEach(b => b.classList.remove('active'));
-    if (event) event.target.classList.add('active');
-    renderEmojis("", cat);
-};
-
+// 5. EMOJIS (Renderizado)
 function renderEmojis(filter = "", category = "fuego") {
     grid.innerHTML = "";
     const filtered = emojiData.filter(item => 
@@ -698,12 +689,6 @@ function renderEmojis(filter = "", category = "fuego") {
         div.onclick = () => addEmoji(emoji.char);
         grid.appendChild(div);
     });
-}
-
-function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 2000);
 }
 
 searchInput.oninput = (e) => renderEmojis(e.target.value);
