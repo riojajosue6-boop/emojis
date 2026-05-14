@@ -1,4 +1,6 @@
-/* 1. CONFIGURACIÓN BASE */
+/* ==========================================
+   1. CONFIGURACIÓN BASE 
+   ========================================== */
 :root {
     --fb-blue: #1877f2;
     --fb-bg: #f0f2f5;
@@ -29,7 +31,9 @@ body {
     max-width: 650px; /* Tamaño compacto para evitar espacio muerto */
 }
 
-/* 2. HEADER */
+/* ==========================================
+   2. HEADER 
+   ========================================== */
 .app-header {
     text-align: center;
     margin-bottom: 25px;
@@ -45,7 +49,9 @@ body {
     font-weight: 500;
 }
 
-/* 3. TARJETA DEL EDITOR (ESTÁTICA) */
+/* ==========================================
+   3. TARJETA DEL EDITOR (ESTÁTICA Y CORREGIDA)
+   ========================================== */
 .main-card {
     background: var(--white);
     border-radius: 8px;
@@ -61,9 +67,10 @@ body {
     text-align: center;
 }
 
+/* Se unificaron las dos propiedades repetidas en una sola regla estable */
 #emojiComposer {
     width: 100%;
-    height: 180px; /* Altura fija para que no salte */
+    height: 150px; /* Altura fija optimizada para evitar saltos */
     border: none;
     padding: 15px;
     font-size: 1.1rem;
@@ -71,6 +78,8 @@ body {
     resize: none; /* Bloquea el redimensionado manual */
     font-family: inherit;
     line-height: 1.5;
+    overflow-y: auto;
+    background: var(--white);
 }
 
 .editor-footer {
@@ -81,7 +90,9 @@ body {
     color: var(--text-gray);
 }
 
-/* 4. BARRA DE HERRAMIENTAS */
+/* ==========================================
+   4. BARRA DE HERRAMIENTAS 
+   ========================================== */
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -143,7 +154,9 @@ body {
 .btn-blue:hover { background: #166fe5; }
 .btn-gray:hover { background: #d8dadf; }
 
-/* 5. CONTENEDOR DE EMOJIS COMPACTO */
+/* ==========================================
+   5. CONTENEDOR DE EMOJIS COMPACTO 
+   ========================================== */
 .emoji-container {
     background: var(--white);
     border-radius: 8px;
@@ -193,7 +206,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
     gap: 4px;
-    height: 220px; /* Altura fija para que no crezca la página */
+    height: 175px; /* Reducido ligeramente para evitar que la página principal scrollee */
     overflow-y: auto;
     padding-right: 5px;
 }
@@ -210,6 +223,8 @@ body {
     aspect-ratio: 1;
     cursor: pointer;
     border-radius: 4px;
+    transition: transform 0.1s ease;
+    user-select: none;
 }
 
 .emoji-item:hover {
@@ -217,6 +232,9 @@ body {
     transform: scale(1.15);
 }
 
+/* ==========================================
+   6. COMPONENTES EXTRA 
+   ========================================== */
 .toast {
     position: fixed;
     bottom: 30px;
@@ -231,23 +249,3 @@ body {
 }
 
 .hidden { display: none; }
-
-#emojiComposer {
-    width: 100%;
-    min-height: 180px;
-    max-height: 300px; /* Permite que crezca un poco si hay mucho texto */
-    padding: 15px;
-    font-size: 1.1rem;
-    outline: none;
-    overflow-y: auto;
-    background: white;
-    line-height: 1.5;
-    white-space: pre-wrap; /* Mantiene los saltos de línea */
-}
-
-/* Estilo para el placeholder en un div editable */
-#emojiComposer:empty:before {
-    content: attr(placeholder);
-    color: #65676b;
-    cursor: text;
-}
