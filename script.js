@@ -573,7 +573,9 @@ const emojiData = [
     { char: "💲", tags: "dolar dinero precio", cat: "simbolos" },
       
 ];
+// ==========================================
 // 1. SELECTORES
+// ==========================================
 const composer = document.getElementById('emojiComposer');
 const charCounter = document.getElementById('charCounter');
 const fontSelector = document.getElementById('fontSelector');
@@ -583,25 +585,29 @@ const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
 const toast = document.getElementById('toast');
 
-// MEMORIA DE CURSOR (La clave para los emojis y letras)
+// MEMORIA DE CURSOR TOTAL
 let savedStart = 0;
 let savedEnd = 0;
 
-// 2. DICCIONARIO DE FUENTES (Completo)
+// ==========================================
+// 2. DICCIONARIO DE FUENTES (Mantenido)
+// ==========================================
 const fonts = {
-    bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"𝗖",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"𝗜",J:"𝗝",K:"Ｋ",L:"𝗟",M:"𝗠",N:"Ｎ",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"Ｓ",T:"𝗧",U:"𝗨",V:"Ｖ",W:"Ｗ",X:"𝗫",Y:"Ｙ",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
-    italic: { a:"𝒶",b:"𝒷",c:"𝒸",d:"𝒹",e:"𝑒",f:"𝒻",g:"𝑔",h:"𝒽",i:"𝒾",j:"𝒿",k:"𝓀",l:"𝓁",m:"𝓂",n:"𝓃",o:"𝑜",p:"𝓅",q:"𝓆",r:"𝓇",s:"𝓈",t:"𝓉",u:"𝓊",v:"𝓋",w:"𝓌",x:"𝓍",y:"𝓎",z:"𝏄", A:"𝒜",B:"𝐵",C:"𝒞",D:"𝒟",E:"𝐸",F:"𝐹",G:"𝒢",H:"𝐻",I:"𝐼",J:"𝒥",K:"𝒦",L:"𝐿",M:"𝑀",N:"𝒩",O:"𝒪",P:"𝒫",Q:"𝒬",R:"𝑅",S:"𝒮",T:"𝒯",U:"𝒰",V:"𝒱",W:"𝒲",X:"𝒳",Y:"𝒴",Z:"𝒵" },
-    monospace: { a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣", A:"𝙰",B:"𝙱",C:"𝙲",D:"𝙳",E:"Ｅ",F:"Ｆ",G:"Ｇ",H:"Ｈ",I:"Ｉ",J:"Ｊ",K:"Ｋ",L:"Ｌ",M:"Ｍ",N:"Ｎ",O:"Ｏ",P:"Ｐ",Q:"𝚀",R:"Ｒ",S:"Ｓ",T:"Ｔ",U:"Ｕ",V:"Ｖ",W:"Ｗ",X:"Ｘ",Y:"Ｙ",Z:"𝚉" },
-    script: { a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃", A:"𝓐",B:"𝓑",C:"𝓐",D:"𝓓",E:"𝓔",F:"𝓕",G:"𝓖",H:"𝓗",I:"𝓘",J:"𝓙",K:"𝓚",L:"尝",M:"𝓜",N:"𝓝",O:"𝓞",P:"𝓟",Q:"𝓠",R:"𝓡",S:"𝓢",T:"𝓣",U:"𝓤",V:"𝓥",W:"𝓦",X:"𝓧",Y:"𝓨",Z:"𝓩" }
+    bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"🇨",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"🇮",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"𝗩",W:"𝗪",X:"𝘅",Y:"𝗬",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
+    italic: { a:"𝒶",b:"𝒷",c:"𝒸",d:"𝒹",e:"𝑒",f:"𝒻",g:"𝑔",h:"𝒽",i:"𝒾",j:"𝒿",k:"𝓀",l:"𝓁",m:"𝓂",n:"𝓃",o:"𝑜",p:"𝓅",q:"𝓆",r:"𝓇",s:"𝓈",t:"𝓉",u:"𝓊",v:"𝓋",w:"𝓌",x:"𝓍",y:"𝓎",z:"𝓏", A:"𝒜",B:"𝐵",C:"𝒞",D:"𝒟",E:"𝐸",F:"𝐹",G:"𝒢",H:"𝐻",I:"𝐼",J:"𝒥",K:"𝒦",L:"𝐿",M:"𝑀",N:"𝒩",O:"𝒪",P:"𝒫",Q:"𝒬",R:"𝑅",S:"𝒮",T:"𝒯",U:"𝒰",V:"𝒱",W:"𝒲",X:"𝒳",Y:"𝒴",Z:"𝒵" },
+    monospace: { a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣", A:"𝙰",B:"𝙱",C:"🇨",D:"𝙳",E:"𝙴",F:"𝙵",G:"𝙶",H:"𝙷",I:"🇮",J:"𝙹",K:"𝙺",L:"𝙻",M:"𝙼",N:"𝙽",O:"𝙾",P:"𝙿",Q:"𝚀",R:"𝚁",S:"𝚂",T:"𝚃",U:"𝚄",V:"𝚅",W:"𝚆",X:"𝚇",Y:"𝚈",Z:"𝚉" },
+    script: { a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃", A:"𝓐",B:"𝓑",C:"🇨",D:"𝓓",E:"𝓔",F:"𝓕",G:"🇬",H:"𝓗",I:"🇮",J:"𝓙",K:"𝓚",L:"𝓛",M:"𝓜",N:"𝓝",O:"𝓞",P:"𝓟",Q:"𝓠",R:"𝓡",S:"𝓢",T:"𝓣",U:"𝓤",V:"𝓥",W:"𝓦",X:"𝓧",Y:"𝓨",Z:"𝓩" }
 };
 
-// 3. FUNCIONES DE APOYO
+// ==========================================
+// 3. FUNCIONES CORE
+// ==========================================
 
 const updateCounter = () => {
     charCounter.textContent = `${[...composer.value].length} caracteres`;
 };
 
-// Guardar posición del cursor cada vez que el usuario hace algo
+// Guardar posición exacta de forma manual
 const recordPos = () => {
     savedStart = composer.selectionStart;
     savedEnd = composer.selectionEnd;
@@ -625,37 +631,38 @@ function transformSelection(style) {
         transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
     }
 
-    // Insertar el texto transformado
+    // Intercambio directo en la cadena de texto
     composer.value = text.substring(0, savedStart) + transformed + text.substring(savedEnd);
     
-    // Devolver el foco y resaltar lo nuevo
+    // Forzar foco y re-seleccionar el texto transformado
     composer.focus();
     composer.setSelectionRange(savedStart, savedStart + transformed.length);
-    recordPos();
+    
+    // Actualizar las variables internas con la nueva posición
+    savedStart = savedStart;
+    savedEnd = savedStart + transformed.length;
     updateCounter();
 }
 
 function addEmoji(char) {
+    // Si el textarea perdió el foco, usamos la última posición guardada
     const text = composer.value;
     
-    // Insertamos el emoji exactamente donde estaba guardado el cursor
     composer.value = text.substring(0, savedStart) + char + text.substring(savedEnd);
     
-    // Movemos el cursor justo después del emoji
     const newPos = savedStart + char.length;
     composer.focus();
     composer.setSelectionRange(newPos, newPos);
     
-    // Actualizamos la memoria para el siguiente emoji
     savedStart = savedEnd = newPos;
     updateCounter();
 }
 
 // ==========================================
-// 4. EVENTOS DE INTERFAZ (CORREGIDO)
+// 4. EVENTOS DE INTERFAZ (FUERZA BRUTA)
 // ==========================================
 
-// Capturar la posición inmediatamente al hacer clic en el menú
+// Guardamos la selección un milisegundo antes de desplegar el menú
 fontSelector.addEventListener('mousedown', recordPos);
 
 fontSelector.onchange = function() {
@@ -665,11 +672,12 @@ fontSelector.onchange = function() {
         transformSelection(estilo);
     }
     
-    // CRUCIAL: Esto tiene que ir afuera del IF. 
-    // Obliga al menú a regresar a "Fuente Estándar" pase lo que pase,
-    // liberando el selector para el siguiente clic.
-    this.value = "normal"; 
-    composer.focus();
+    // El secreto definitivo: ejecutamos el reset en un hilo secundario (10ms)
+    // para evitar que el navegador congele el evento 'change'
+    setTimeout(() => {
+        this.value = "normal";
+        composer.focus();
+    }, 10);
 };
 
 btnBold.onclick = (e) => { 
@@ -697,7 +705,9 @@ document.getElementById('btnClear').onclick = () => {
     composer.focus();
 };
 
+// ==========================================
 // 5. EMOJIS (Renderizado)
+// ==========================================
 function renderEmojis(filter = "", category = "fuego") {
     grid.innerHTML = "";
     const filtered = emojiData.filter(item => 
@@ -710,6 +720,19 @@ function renderEmojis(filter = "", category = "fuego") {
         div.onclick = () => addEmoji(emoji.char);
         grid.appendChild(div);
     });
+}
+
+window.filterCategory = (cat, event) => {
+    if (event) event.preventDefault();
+    document.querySelectorAll('.category-nav button').forEach(b => b.classList.remove('active'));
+    if (event) event.target.classList.add('active');
+    renderEmojis("", cat);
+};
+
+function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 2000);
 }
 
 searchInput.oninput = (e) => renderEmojis(e.target.value);
