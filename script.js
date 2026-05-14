@@ -651,17 +651,38 @@ function addEmoji(char) {
     updateCounter();
 }
 
-// 4. EVENTOS
-fontSelector.onmousedown = recordPos; // Captura la selección justo antes de abrir el menú
+// ==========================================
+// 4. EVENTOS DE INTERFAZ (CORREGIDO)
+// ==========================================
+
+// Capturar la posición inmediatamente al hacer clic en el menú
+fontSelector.addEventListener('mousedown', recordPos);
+
 fontSelector.onchange = function() {
-    if (this.value !== "normal") {
-        transformSelection(this.value);
-        this.value = "normal";
+    const estilo = this.value;
+    
+    if (estilo !== "normal") {
+        transformSelection(estilo);
     }
+    
+    // CRUCIAL: Esto tiene que ir afuera del IF. 
+    // Obliga al menú a regresar a "Fuente Estándar" pase lo que pase,
+    // liberando el selector para el siguiente clic.
+    this.value = "normal"; 
+    composer.focus();
 };
 
-btnBold.onclick = (e) => { e.preventDefault(); recordPos(); transformSelection('bold'); };
-btnItalic.onclick = (e) => { e.preventDefault(); recordPos(); transformSelection('italic'); };
+btnBold.onclick = (e) => { 
+    e.preventDefault(); 
+    recordPos(); 
+    transformSelection('bold'); 
+};
+
+btnItalic.onclick = (e) => { 
+    e.preventDefault(); 
+    recordPos(); 
+    transformSelection('italic'); 
+};
 
 document.getElementById('btnCopyAll').onclick = () => {
     composer.select();
