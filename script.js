@@ -585,29 +585,59 @@ const grid = document.getElementById('emojiGrid');
 const searchInput = document.getElementById('searchInput');
 const toast = document.getElementById('toast');
 
-// MEMORIA DE CURSOR TOTAL
 let savedStart = 0;
 let savedEnd = 0;
 
 // ==========================================
-// 2. DICCIONARIO DE FUENTES (Mantenido)
+// 2. DICCIONARIO DE FUENTES
 // ==========================================
 const fonts = {
-    bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"🇨",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"🇮",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"𝗩",W:"𝗪",X:"𝘅",Y:"𝗬",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
+    bold: { a:"𝗮",b:"𝗯",c:"𝗰",d:"𝗱",e:"𝗲",f:"𝗳",g:"𝗴",h:"𝗵",i:"𝗶",j:"𝗷",k:"𝗸",l:"𝗹",m:"𝗺",n:"𝗻",o:"𝗼",p:"𝗽",q:"𝗾",r:"𝗿",s:"𝘀",t:"𝘁",u:"𝘂",v:"𝘃",w:"𝘄",x:"𝘅",y:"𝘆",z:"𝘇", A:"𝗔",B:"𝗕",C:"🇨",D:"𝗗",E:"𝗘",F:"𝗙",G:"𝗚",H:"𝗛",I:"🇮",J:"𝗝",K:"𝗞",L:"𝗟",M:"𝗠",N:"𝗡",O:"𝗢",P:"𝗣",Q:"𝗤",R:"𝗥",S:"𝗦",T:"𝗧",U:"𝗨",V:"Ｖ",W:"𝗪",X:"𝘅",Y:"𝗬",Z:"𝗭", 0:"𝟬",1:"𝟭",2:"𝟮",3:"𝟯",4:"𝟰",5:"𝟱",6:"𝟲",7:"𝟳",8:"𝟴",9:"𝟵" },
     italic: { a:"𝒶",b:"𝒷",c:"𝒸",d:"𝒹",e:"𝑒",f:"𝒻",g:"𝑔",h:"𝒽",i:"𝒾",j:"𝒿",k:"𝓀",l:"𝓁",m:"𝓂",n:"𝓃",o:"𝑜",p:"𝓅",q:"𝓆",r:"𝓇",s:"𝓈",t:"𝓉",u:"𝓊",v:"𝓋",w:"𝓌",x:"𝓍",y:"𝓎",z:"𝓏", A:"𝒜",B:"𝐵",C:"𝒞",D:"𝒟",E:"𝐸",F:"𝐹",G:"𝒢",H:"𝐻",I:"𝐼",J:"𝒥",K:"𝒦",L:"𝐿",M:"𝑀",N:"𝒩",O:"𝒪",P:"𝒫",Q:"𝒬",R:"𝑅",S:"𝒮",T:"𝒯",U:"𝒰",V:"𝒱",W:"𝒲",X:"𝒳",Y:"𝒴",Z:"𝒵" },
-    monospace: { a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣", A:"𝙰",B:"𝙱",C:"🇨",D:"𝙳",E:"𝙴",F:"𝙵",G:"𝙶",H:"𝙷",I:"🇮",J:"𝙹",K:"𝙺",L:"𝙻",M:"𝙼",N:"𝙽",O:"𝙾",P:"𝙿",Q:"𝚀",R:"𝚁",S:"𝚂",T:"𝚃",U:"𝚄",V:"𝚅",W:"𝚆",X:"𝚇",Y:"𝚈",Z:"𝚉" },
-    script: { a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃", A:"𝓐",B:"𝓑",C:"🇨",D:"𝓓",E:"𝓔",F:"𝓕",G:"🇬",H:"𝓗",I:"🇮",J:"𝓙",K:"𝓚",L:"𝓛",M:"𝓜",N:"𝓝",O:"𝓞",P:"𝓟",Q:"𝓠",R:"𝓡",S:"𝓢",T:"𝓣",U:"𝓤",V:"𝓥",W:"𝓦",X:"𝓧",Y:"𝓨",Z:"𝓩" }
+    monospace: { a:"𝚊",b:"𝚋",c:"𝚌",d:"𝚍",e:"𝚎",f:"𝚏",g:"𝚐",h:"𝚑",i:"𝚒",j:"𝚓",k:"𝚔",l:"𝚕",m:"𝚖",n:"𝚗",o:"𝚘",p:"𝚙",q:"𝚚",r:"𝚛",s:"𝚜",t:"𝚝",u:"𝚞",v:"𝚟",w:"𝚠",x:"𝚡",y:"𝚢",z:"𝚣", A:"𝙰",B:"𝙱",C:"🇨",D:"𝙳",E:"𝙴",F:"夾",G:"𝙶",H:"𝙷",I:"🇮",J:"𝙹",K:"𝙺",L:"𝙻",M:"𝙼",N:"𝙽",O:"𝙾",P:"Ｐ",Q:"𝚀",R:"Ｒ",S:"Ｓ",T:"Ｔ",U:"𝚄",V:"Ｖ",W:"穩",X:"𝚇",Y:"Ｙ",Z:"𝚉" },
+    script: { a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲",j:"𝓳",k:"𝓴",l:"𝓵",m:"𝓶",n:"𝓷",o:"𝓸",p:"𝓹",q:"𝓺",r:"𝓻",s:"𝓼",t:"𝓽",u:"𝓾",v:"𝓿",w:"𝔀",x:"𝔁",y:"𝔂",z:"𝔃", A:"𝓐",B:"𝓑",C:"🇨",D:"𝓓",E:"𝓔",F:"𝓕",G:"𝓰",H:"𝓗",I:"🇮",J:"𝓙",K:"𝓚",L:"𝓛",M:"𝓜",N:"𝓝",O:"𝓞",P:"𝓟",Q:"𝓠",R:"𝓡",S:"𝓢",T:"𝓣",U:"𝓤",V:"𝓥",W:"𝓦",X:"𝓧",Y:"𝓨",Z:"𝓩" }
 };
 
 // ==========================================
-// 3. FUNCIONES CORE
+// 3. TRADUCTOR INVERSO (TU IDEA MAGISTRAL)
+// ==========================================
+function convertToNormal(text) {
+    let normalText = "";
+    
+    // Convertimos el texto a un array para manejar caracteres Unicode complejos (como las fuentes estilizadas)
+    const chars = [...text]; 
+    
+    for (let char of chars) {
+        let found = false;
+        
+        // Buscamos a qué letra normal (a-z, A-Z, 0-9) pertenece ese carácter raro
+        for (let style in fonts) {
+            for (let normalChar in fonts[style]) {
+                if (fonts[style][normalChar] === char) {
+                    normalText += normalChar;
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+        
+        // Si no era una letra estilizada (ej. un espacio o un emoji), la dejamos igual
+        if (!found) {
+            normalText += char;
+        }
+    }
+    return normalText;
+}
+
+// ==========================================
+// 4. FUNCIONES CORE
 // ==========================================
 
 const updateCounter = () => {
     charCounter.textContent = `${[...composer.value].length} caracteres`;
 };
 
-// Guardar posición exacta de forma manual
 const recordPos = () => {
     savedStart = composer.selectionStart;
     savedEnd = composer.selectionEnd;
@@ -626,71 +656,56 @@ function transformSelection(style) {
         return;
     }
 
+    // 1. PRIMERO LIMPIAMOS EL TEXTO (Aplicando tu observación)
+    const cleanText = convertToNormal(selectedText);
+
+    // 2. AHORA SÍ LE APLICAMOS EL NUEVO ESTILO
     let transformed = "";
-    for (let char of selectedText) {
-        transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
+    if (style === "normal") {
+        transformed = cleanText; // Si eligen "Fuente Estándar" se queda limpia
+    } else {
+        for (let char of cleanText) {
+            transformed += (fonts[style] && fonts[style][char]) ? fonts[style][char] : char;
+        }
     }
 
-    // Intercambio directo en la cadena de texto
-    composer.value = text.substring(0, savedStart) + transformed + text.substring(savedEnd);
+    // Reemplazo e inyección
+    composer.value = text.substring(0, savedStart) + transformed + text.substring(end = savedEnd);
     
-    // Forzar foco y re-seleccionar el texto transformado
     composer.focus();
     composer.setSelectionRange(savedStart, savedStart + transformed.length);
     
-    // Actualizar las variables internas con la nueva posición
-    savedStart = savedStart;
     savedEnd = savedStart + transformed.length;
     updateCounter();
 }
 
 function addEmoji(char) {
-    // Si el textarea perdió el foco, usamos la última posición guardada
     const text = composer.value;
-    
     composer.value = text.substring(0, savedStart) + char + text.substring(savedEnd);
-    
     const newPos = savedStart + char.length;
     composer.focus();
     composer.setSelectionRange(newPos, newPos);
-    
     savedStart = savedEnd = newPos;
     updateCounter();
 }
 
 // ==========================================
-// 4. EVENTOS DE INTERFAZ (FUERZA BRUTA)
+// 5. EVENTOS DE INTERFAZ
 // ==========================================
-
-// Guardamos la selección un milisegundo antes de desplegar el menú
 fontSelector.addEventListener('mousedown', recordPos);
 
 fontSelector.onchange = function() {
     const estilo = this.value;
+    transformSelection(estilo);
     
-    if (estilo !== "normal") {
-        transformSelection(estilo);
-    }
-    
-    // El secreto definitivo: ejecutamos el reset en un hilo secundario (10ms)
-    // para evitar que el navegador congele el evento 'change'
     setTimeout(() => {
         this.value = "normal";
         composer.focus();
     }, 10);
 };
 
-btnBold.onclick = (e) => { 
-    e.preventDefault(); 
-    recordPos(); 
-    transformSelection('bold'); 
-};
-
-btnItalic.onclick = (e) => { 
-    e.preventDefault(); 
-    recordPos(); 
-    transformSelection('italic'); 
-};
+btnBold.onclick = (e) => { e.preventDefault(); recordPos(); transformSelection('bold'); };
+btnItalic.onclick = (e) => { e.preventDefault(); recordPos(); transformSelection('italic'); };
 
 document.getElementById('btnCopyAll').onclick = () => {
     composer.select();
@@ -706,7 +721,7 @@ document.getElementById('btnClear').onclick = () => {
 };
 
 // ==========================================
-// 5. EMOJIS (Renderizado)
+// 6. EMOJIS (Renderizado)
 // ==========================================
 function renderEmojis(filter = "", category = "fuego") {
     grid.innerHTML = "";
