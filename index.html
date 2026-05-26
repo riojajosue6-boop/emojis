@@ -11,35 +11,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-family: sans-serif; text-align: center; padding: 20px;">
-    <h1 style="font-size: 2.5rem; margin-bottom: 10px; font-weight: bold; color: #facc15;">¡Bienvenido a EmojiExpress! ⚡</h1>
-    <p style="font-size: 1.1rem; color: #94a3b8; max-width: 400px; margin-bottom: 30px;">La mejor herramienta profesional para decorar tus publicaciones de WhatsApp y redes sociales.</p>
     
-    <button id="btn-entrar" style="background: #2563eb; color: white; font-size: 1.3rem; font-weight: bold; padding: 15px 40px; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4); transition: transform 0.2s;">
-        🚀 Entrar al Editor Pro
-    </button>
-<div style="display: flex; flex-direction: column; gap: 8px; margin: 15px auto 25px auto; width: 100%; max-width: 440px; padding: 0 10px; box-sizing: border-box;">
-    <a href="https://mundogrupos.com" style="display: flex; align-items: center; justify-content: center; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; font-weight: 600; padding: 10px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); transition: all 0.2s; text-align: center;">
-        🌐 Ver Directorio General de Grupos
-    </a>
-    <a href="https://recursos.mundogrupos.com" style="display: flex; align-items: center; justify-content: center; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; font-weight: 600; padding: 10px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); transition: all 0.2s; text-align: center;">
-        📚 Ir al Panel de Recursos, Audiolibros y PDFs
-    </a>
-</div>
+    <div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-family: sans-serif; text-align: center; padding: 20px; box-sizing: border-box;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px; font-weight: bold; color: #facc15;">¡Bienvenido a EmojiExpress! ⚡</h1>
+        <p style="font-size: 1.1rem; color: #94a3b8; max-width: 400px; margin-bottom: 30px;">La mejor herramienta profesional para decorar tus publicaciones de WhatsApp y redes sociales.</p>
+        
+        <button id="btn-entrar" style="background: #2563eb; color: white; font-size: 1.3rem; font-weight: bold; padding: 15px 40px; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4); transition: transform 0.2s; outline: none;">
+            🚀 Entrar al Editor Pro
+        </button>
+    </div>
 
-<script>
-document.getElementById('btn-entrar').addEventListener('click', function() {
-    // 1. REEMPLAZA ESTA URL CON TU ENLACE DIRECTO DE MONETAG
-    const smartLink = "https://omg10.com/4/11061922";
-    
-    // 2. Abre el anuncio garantizado en una pestaña nueva atrás
-    window.open(smartLink, '_blank');
-    
-    // 3. Desaparece la pantalla de bienvenida para dejar usar la app gratis
-    document.getElementById('welcome-overlay').style.display = 'none';
-});
-</script>
+    <script>
+    document.getElementById('btn-entrar').addEventListener('click', function() {
+        const smartLink = "https://omg10.com/4/11061922";
+        window.open(smartLink, '_blank');
+        document.getElementById('welcome-overlay').style.display = 'none';
+    });
+    </script>
+
     <div class="app-container">
+
+        <div style="display: flex; flex-direction: column; gap: 8px; margin: 5px auto 25px auto; width: 100%; max-width: 440px; padding: 0 1px; box-sizing: border-box;">
+            <a href="https://mundogrupos.com" style="display: flex; align-items: center; justify-content: center; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; font-weight: 600; padding: 10px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); transition: all 0.2s; text-align: center;">
+                🌐 Ver Directorio General de Grupos
+            </a>
+            <a href="https://recursos.mundogrupos.com" style="display: flex; align-items: center; justify-content: center; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; font-weight: 600; padding: 10px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.02); transition: all 0.2s; text-align: center;">
+                📚 Ir al Panel de Recursos, Audiolibros y PDFs
+            </a>
+        </div>
+
         <header class="app-header">
             <h1>EmojiExpress</h1>
             <p>Editor de Publicaciones Profesional</p>
@@ -51,11 +51,11 @@ document.getElementById('btn-entrar').addEventListener('click', function() {
             </div>
 
             <div class="editor-section">
-                    <textarea id="emojiComposer" placeholder="Escribe tu publicación aquí..." spellcheck="false"></textarea>
-    
-                    <div class="editor-footer">
-                        <span id="charCounter">0 caracteres</span>
-                    </div>
+                <textarea id="emojiComposer" placeholder="Escribe tu publicación aquí..." spellcheck="false"></textarea>
+        
+                <div class="editor-footer">
+                    <span id="charCounter">0 caracteres</span>
+                </div>
             </div>
 
             <div class="toolbar">
