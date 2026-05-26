@@ -10,7 +10,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-family: sans-serif; text-align: center; padding: 20px;">
+    <h1 style="font-size: 2.5rem; margin-bottom: 10px; font-weight: bold; color: #facc15;">¡Bienvenido a EmojiExpress! ⚡</h1>
+    <p style="font-size: 1.1rem; color: #94a3b8; max-width: 400px; margin-bottom: 30px;">La mejor herramienta profesional para decorar tus publicaciones de WhatsApp y redes sociales.</p>
+    
+    <button id="btn-entrar" style="background: #2563eb; color: white; font-size: 1.3rem; font-weight: bold; padding: 15px 40px; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4); transition: transform 0.2s;">
+        🚀 Entrar al Editor Pro
+    </button>
+</div>
 
+<script>
+document.getElementById('btn-entrar').addEventListener('click', function() {
+    // 1. REEMPLAZA ESTA URL CON TU ENLACE DIRECTO DE MONETAG
+    const smartLink = "https://omg10.com/4/11061922";
+    
+    // 2. Abre el anuncio garantizado en una pestaña nueva atrás
+    window.open(smartLink, '_blank');
+    
+    // 3. Desaparece la pantalla de bienvenida para dejar usar la app gratis
+    document.getElementById('welcome-overlay').style.display = 'none';
+});
+</script>
     <div class="app-container">
         <header class="app-header">
             <h1>EmojiExpress</h1>
